@@ -1,0 +1,21 @@
+
+[ -f /etc/bashrc ] && . /etc/bashrc
+[ -f /etc/profile ] && . /etc/profile
+
+export KDEDIR=/usr
+export QTDIR=/usr/share/qt3
+
+. ~/.alias
+. ~/.prompt
+
+export TERM=xterm
+export TERM=vt100
+export TERM=xterm-color
+export PATH=$PATH:$HOME/settings/bin
+
+twttypow
+
+
+# This line was appended by KDE
+# Make sure our customised gtkrc file is loaded.
+export GTK2_RC_FILES=$HOME/.gtkrc-2.0

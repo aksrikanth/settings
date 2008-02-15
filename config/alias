@@ -1,0 +1,8 @@
+alias ps='ps U srikanth'
+alias vi='vim'
+alias mplayer='mplayer -stop-xscreensaver'
+eval "`dircolors`"
+alias ls='ls --color=auto'
+alias mpdev='mplayer -ao oss:/dev/dsp1'
+alias java='java -Xms16m -Xmx1024m'
+alias log='vi ~/datalog/current.datalog'

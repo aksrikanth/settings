@@ -1,0 +1,500 @@
+ls
+cp .bash_profile .profile
+ls
+ls
+ls
+ls -a
+ls -a --color
+su
+man ssh
+ls -a
+vi /etc/ssh/sshd_config 
+man sshd_conf
+man sshd_config
+q
+which bash
+ls /usr/bin/bash
+chsh
+ls
+screen
+ls
+sls
+ls
+man stty
+stty erase 
+ls
+hostname
+screen
+ls
+vi .screenrc 
+ls
+mkdir settings
+ls
+mkdir settings/bin
+mkdir settings/conf
+ls
+ls -a
+mv .* settings/conf/
+ls
+ls -a
+for f in settings/conf/; do echo ln -s $f ; done
+for f in settings/conf/*; do echo ln -s $f ; done
+for f in `ls settings/conf/`; do echo ln -s $f ; done
+for f in `ls settings/conf`; do echo ln -s $f ; done
+for f in `ls -a settings/conf/`; do echo ln -s $f ; done
+for f in `ls -A settings/conf/`; do echo ln -s $f ; done
+for f in `ls -A settings/conf/`; do ln -s $f ; done
+ls
+ls -a
+ls -l
+ls -al
+for f in `ls -A settings/conf/`; do rm -f $f ; ln -s settings/conf/$f ; done
+ls -a
+ls -al
+vi .bashrc 
+ls
+ls
+ls -a
+cd settings/conf/
+ls
+for f in `ls -A`; do echo mv $f ${f##.}; done
+for f in `ls -A`; do mv $f ${f##.}; done
+ls
+ls -a
+ls -l
+su
+ls
+ls -l
+cd
+ls
+ls -a
+for f in `ls settings/conf/`; do rm -f ".$f" ; ln -s settings/conf/$f ".$f" ; done
+ls
+ls -a
+ls -al
+echo $PATH
+mv settings/conf/ settings/config
+ls -a
+for f in `ls settings/config/`; do rm -f ".$f" ; ln -s settings/config/$f ".$f" ; done
+ls -a
+ls
+ls music/
+ls music/AR\ Rahman/
+ls music/AR\ Rahman/1992/
+ls music/AR\ Rahman/1992/Roja/Roja_ARR_1992_RukkumaniRukkumani.mp3 
+ls music/AR\ Rahman/
+du -sh music/
+du -sh music/
+while : ; do du -sh music/; sleep 5; done
+touch google0529a363fd869c98.html
+ls
+rm google0529a363fd869c98.html 
+su
+su
+su
+mpc
+vi mpdconf 
+man mpd.conf
+su
+ls
+screen -R
+su
+ps
+ls
+su
+ls
+vi mpdconf 
+vi /etc/mpd.conf 
+su
+ls
+vi temp
+ncmpc -P q1w2e3r4
+links
+su
+links
+su
+mpc
+mpc --help
+mpc play
+mpc --help |less
+mpc --help 2>&1 |less
+su
+mpc --help 2>&1 |
+mpc --help 2>&1 |less
+man mpc
+mpc q1w2e3r4@ play
+mpc q1w2e3r4@localhost play
+man mpc
+ncmpc 
+ncmpc -P q1w2e3r4
+su
+su
+su
+su
+ls
+mkdir ebooks
+mv *.pdf ebooks/
+ls
+cat temp 
+ncmpc -P q1w2e3r4
+ls
+cd w
+echo $TERM
+export TERM=screen
+ls
+ls ..
+ls
+ls -a //
+ls -a ..
+ls
+vi temp 
+su
+ls
+mkdir blogs
+ls
+du -sh /var/www/
+cp -R /var/www/ .
+ls
+ls www/
+su
+ls
+mv blogs/ www/
+ls
+mv temp www/blogs/
+cd www/blogs/
+ls
+mv temp working-with-windows.txt
+ls
+vi working-with-windows.txt 
+ls
+wget http://ivoras.sharanet.org/stuff/Markdown.pl
+ls
+perl Markdown.pl working-with-windows.txt 
+vi Markdown.pl 
+ls
+rm Markdown.pl 
+wget http://superb-east.dl.sourceforge.net/sourceforge/python-markdown/python_markdown-1.7.rc1.zip
+unzip -l python_markdown-1.7.rc1.zip 
+su
+unzip -l python_markdown-1.7.rc1.zip 
+unzip python_markdown-1.7.rc1.zip 
+ls
+cd python_markdown-1.7
+ls
+cp markdown.py ..
+cd ..
+ls
+rm -rf python_markdown-1.7
+ls
+python markdown.py working-with-windows.txt 
+python markdown.py working-with-windows.txt working-with-windows.html
+python markdown.py working-with-windows.txt -f working-with-windows.html
+vi working-with-windows.txt 
+screen
+screen -RD
+echo $TERM
+cd
+screen
+cd www/blogs/
+ls
+vi ../code.shtml 
+ls
+vi convert.sh
+chmod 755 convert.sh 
+ls
+./convert.sh working-with-windows.txt 
+vi top.html 
+vi bot.html 
+ls
+vi bot.html 
+mv bot.html bot.sh
+vi bot.sh 
+sh bot.sh 
+sh bot.sh working-with-windows.
+sh bot.sh working-with-windows.txt 
+vi convert.sh 
+./convert.sh working-with-windows.txt 
+vi working-with-windows.html 
+ls ..
+vi convert.sh 
+ls
+rm working-with-windows.html 
+./convert.sh working-with-windows.txt 
+ls
+vi convert.sh 
+ls
+cd ..
+ls
+mkdir includes
+ls
+mv *.html includes/
+ls
+mv includes/googlehostedservice.html .
+ls
+vi code.shtml 
+ls includes/
+mv includes/google0529a363fd869c98.html .
+ls
+vi code.shtml 
+vi index.shtml 
+vi comics.shtml 
+vi links.shtml 
+vi publications.shtml 
+vi stuff.shtml 
+ls
+ls
+cd www/blogs/
+ls
+vi top.html 
+vi bot.sh 
+vi working-with-windows.
+vi working-with-windows.txt 
+ls
+mv working-with-windows.txt working-with-windows.mkd
+vi working-with-windows.mkd 
+ls
+cd
+ls
+mkdir .vim
+cd .vim
+ls
+cd ..
+ls
+ls -a
+mv .vim settings/config/vim
+ln -s settings/config/vim .vim
+ls -a
+cd settings/config/vim
+ls
+mkdir syntax
+ls
+cd syntax/
+wget http://plasticboy.com/dox/mkd.vim
+ls
+cd ..
+vi filetype.vim
+cd ..
+ls
+vi vimrc 
+cd
+ls
+cd www/blogs/
+ls
+vi working-with-windows.mkd 
+gvim working-with-windows.mkd 
+su
+gvim working-with-windows.mkd 
+vi /etc/ssh/sshd_config 
+vi /etc/ssh/ssh_config 
+su
+su
+gvim
+env
+vi /etc/ssh/sshd_config 
+vi /etc/ssh/ssh_config 
+su
+env
+env
+xterm
+su
+env
+gvim
+ls
+gvim
+ls -a ~/
+ls -a ~/.vim
+ls -a /home/srikanth/.vim/spell/
+cat /home/srikanth/.vim/spell/*
+cd www
+cd blog
+cd build/
+vi top.sh 
+vi top.sh 
+vi ~/.vimrc
+vi ~/.vimrc
+ls
+ls
+vi
+vi .vimrc
+vim
+ls
+cd www/blogs/
+ls
+mkdir build
+mv bot.sh convert.sh top.html markdown.py python_markdown-1.7.rc1.zip build/
+ls
+cd build/
+ls
+vi convert.sh 
+cd ..
+ls
+vi working-with-windows.mkd 
+ls
+rm working-with-windows.mkdshtml 
+vi working-with-windows.mkd 
+ls
+cd ..
+ls
+cd co
+vi includes/css.html 
+mkdir css
+mv *.css css/
+ls
+vi getimage.js 
+ls
+mkdir js
+mv *.js js
+ls
+vi includes/css.html 
+vi comics.shtml 
+ls pyblosxom/
+ls publications
+ls pitchfork/
+ls
+su
+ls
+df -h
+cd blogs/
+ls
+vi working-with-windows.mkd 
+vi build/convert.sh 
+mv build/top.html build/top.sh
+vi build/convert.sh 
+vi working-with-windows.mkd 
+vi build/convert.sh 
+vi working-with-windows.mkd 
+head -1 working-with-windows.mkd 
+vi build/convert.sh 
+build/convert.sh working-with-windows.
+ls
+build/convert.sh working-with-windows.mkd 
+vi build/convert.sh 
+build/convert.sh working-with-windows.mkd 
+vi build/convert.sh 
+head -1 working-with-windows.mkd | sed 's/#*//'
+vi build/convert.sh 
+echo `head -1 working-with-windows.mkd | sed 's/#*//'`
+a=`head -1 working-with-windows.mkd | sed 's/#*//'` ; echo $a
+vi build/convert.sh 
+build/convert.sh working-with-windows.mkd 
+vi build/convert.sh 
+vi working-with-windows.mkd 
+cd ..
+mv blogs/ blog
+cd blog/
+ls
+cd build/
+ls
+vi convert.sh 
+cd ..
+ls
+vi working-with-windows.mkd 
+vi index.mkd
+ls
+vi working-with-windows.mkd 
+vi working-with-windows.mkd 
+ls
+cd ..
+ls
+vi includes/menu.html 
+vi comics.shtml 
+vi js/getimage.js 
+cd blog/
+./build/convert.sh working-with-windows.mkd 
+ls
+vi build/top.sh 
+./build/convert.sh working-with-windows.mkd 
+ls
+ncmpc -P q1w2e3r4
+cd www/
+ls
+cd blog/
+ls
+vi working-with-windows.mkd 
+cd images/
+ls
+su
+for f in *.png; do echo convert $f -thumbnail 300 "thumb_$f"; done
+for f in *.png; do convert $f -thumbnail 300 "thumb_$f"; done
+ls
+ls
+cd ..
+vi working-with-windows.mkd 
+cd images/
+ls
+for f in *.png; do convert $f -thumbnail 500 "thumb_$f"; done
+cd
+ncmpc -P q1w2e3r4
+su
+ls
+cd www/blog/
+ls
+vi dynamically-loading-javascript.mkd 
+cd www/blog/
+ls -a
+vi dynamically-loading-javascript.mkd 
+cd www/blog/
+ls
+vi dynamically-loading-javascript.mkd 
+cd www/blog/
+ls
+vi dynamically-loading-javascript.mkd 
+cd www/blog/
+ls
+vi dynamically-loading-javascript.
+vi dynamically-loading-javascript.mkd 
+ls
+su
+cd bl
+cd www/blog/
+ls
+vi dynamically-loading-javascript.mkd 
+vi ../css/blog.css
+ssh 76.102.56.10
+ls
+vi
+man grep
+ls
+cd ebooks/
+ls
+ssh 76.102.56.10
+ssh 76.102.56.10
+links
+xterm
+ncmpc -P q1w2e3r4
+ssh 76.102.56.10
+ssh 76.102.56.10
+links
+host
+finger
+users
+ps
+ssh 76.102.56.10
+cat /etc/resolv.conf 
+ls
+cd www/blog/
+ls
+vi dynamically-loading-javascript.mkd 
+fortune
+su
+fortune
+fortune -o
+fortune -o
+fortune -o
+fortune -o
+fortune -a
+fortune -a
+fortune -a
+fortune -a
+fortune -a
+fortune -a
+fortune -a
+cd www/
+ls
+ps
+cd blog/
+ls
+vi dynamically-loading-javascript.mkd 
+ncmpc -P q1w2e3r4
+ncmpc -P q1w2e3r4
+ls
