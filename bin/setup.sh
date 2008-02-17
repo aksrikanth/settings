@@ -2,5 +2,5 @@
 
 for f in ~/settings/config/*
 do
-	ln -s $f ${f##*/}
+	ln -s $f .${f##*/}
 done
