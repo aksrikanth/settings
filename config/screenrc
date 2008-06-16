@@ -735,6 +735,10 @@ bindkey -k F2 next
 # ^[Ok +      resize +2
 # ^[OM Enter
 #
+screen -t root 0 sudo bash
+screen
+screen
+screen
 # ================================
 # At the very end... show the
 # current version and say hello :-)

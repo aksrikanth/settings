@@ -1,3 +1,9 @@
 "set guifontset=-misc-fixed-*-*-normal--20-*-*-*-c-*-iso8859-1
-set guifontset=-adobe-courier-*-r-normal--20-*-*-*-*-*-iso8859-1
+"set guifontset=-adobe-courier-*-r-normal--20-*-*-*-*-*-iso8859-1
 colorscheme torte
+set guifont=ProggyCleanTTSZ\ 12
+
+execute 'set listchars+=tab:' . nr2char(187) . nr2char(183) . ',eol:' . nr2char(172)
+
+hi NonText guifg=DarkMagenta guibg=black gui=NONE
+hi SpecialKey guifg=DarkMagenta guibg=black gui=NONE

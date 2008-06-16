@@ -22,16 +22,20 @@ map <xF4> <F4>
 map <xF3> <F3>
 map <xF2> <F2>
 map <xF1> <F1>
+
 map! <C-e> <esc>
+
 let &cpo=s:cpo_save
 unlet s:cpo_save
-set si
+
+set modeline
+set foldmethod=marker
+set smartindent
 set background=dark
-set lbr
+set linebreak
 set backspace=indent,eol,start
 set helplang=en
 set history=50
-"set hlsearch
 set incsearch
 set mouse=a
 set printoptions=paper:a4
@@ -41,10 +45,58 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set tabstop=4
 set termencoding=utf-8
 set viminfo='20,\"50
-set sc
+set showcmd
 set directory=~/tmp
+set ttymouse=xterm2
+set list
+set listchars=eol:-,tab:+-,extends:+,precedes:<,nbsp:~
+
+hi NonText ctermfg=darkmagenta
+hi SpecialKey ctermfg=darkmagenta
+
+" Removes trailing spaces and collapses multiple empty lines to single ones
+if &diff
+else
+	if !exists("g:trailing_spaces")
+		let g:trailing_spaces = 0
+		function! TrimWhiteSpace()
+			mkview
+			norm zR
+			kK
+			silent %s/\s*$//
+			silent v_._,/./-1join
+			silent loadview
+			norm `K
+		endfunction
+
+		autocmd FileWritePre * :call TrimWhiteSpace()
+		autocmd FileAppendPre * :call TrimWhiteSpace()
+		autocmd FilterWritePre * :call TrimWhiteSpace()
+		autocmd BufWritePre * :call TrimWhiteSpace()
+	endif
+endif
+
+function! s:SmartHome()
+    " this line checks if we are not on the first whitespace.
+    if col('.') != match(getline('.'), '\S')+1
+        norm ^
+    else
+        norm 0
+    endif
+endfun
+
+inoremap <silent><home> <C-O>:call <SID>SmartHome()<CR>
+nnoremap <silent><home> :call <SID>SmartHome()<CR>
+vnoremap <silent><home> :call <SID>SmartHome()<CR>
+
 filetype indent on
 syntax on
+
+let extfile = expand("<sfile>:h") . "/.local_vimrc"
+
+if filereadable(extfile)
+	source <sfile>:h/.local_vimrc
+endif
 
 let python_highlight_all = 1
 
