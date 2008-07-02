@@ -6,6 +6,7 @@ export KDEDIR=/usr
 export QTDIR=/usr/share/qt3
 
 . ~/.alias
+[ -f ~/.local_alias ] && . ~/.local_alias
 . ~/.prompt
 
 export TERM=xterm

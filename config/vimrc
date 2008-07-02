@@ -29,6 +29,7 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 
 set modeline
+set wildmenu
 set foldmethod=marker
 set smartindent
 set background=dark
@@ -94,10 +95,6 @@ syntax on
 
 let extfile = expand("<sfile>:h") . "/.local_vimrc"
 
-if filereadable(extfile)
-	source <sfile>:h/.local_vimrc
-endif
-
 let python_highlight_all = 1
 
 au FileType datalog source ~/.vim/datalog.vim
@@ -105,3 +102,8 @@ au FileType datalog source ~/.vim/datalog.vim
 augroup mkd
 	autocmd BufRead *.mkd  set ai spell spelllang=en_us formatoptions=tcroqn2 comments=n:>
 augroup END
+
+if filereadable(extfile)
+	source <sfile>:h/.local_vimrc
+endif
+" vim:set noexpandtab ts=4 sw=4 :
