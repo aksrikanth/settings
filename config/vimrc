@@ -65,7 +65,7 @@ else
 			norm zR
 			kK
 			silent %s/\s*$//
-			silent v_._,/./-1join
+			silent! v_._,/./-1join
 			silent loadview
 			norm `K
 		endfunction
@@ -78,12 +78,12 @@ else
 endif
 
 function! s:SmartHome()
-    " this line checks if we are not on the first whitespace.
-    if col('.') != match(getline('.'), '\S')+1
-        norm ^
-    else
-        norm 0
-    endif
+	" this line checks if we are not on the first whitespace.
+	if col('.') != match(getline('.'), '\S')+1
+		norm ^
+	else
+		norm 0
+	endif
 endfun
 
 inoremap <silent><home> <C-O>:call <SID>SmartHome()<CR>
