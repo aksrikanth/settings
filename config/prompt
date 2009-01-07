@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #   termwide prompt with tty number and power percent
 #     by Giles - created 2 November 98
@@ -35,8 +35,8 @@ let promptsize=$(echo -n "--(${usernam}@${hostnam}:${cur_tty})---(${PWD})--" \
                  | wc -c | tr -d " ")
 let fillsize=${TERMWIDTH}-${promptsize}
 fill=""
-while [ "$fillsize" -gt "0" ] 
-do 
+while [ "$fillsize" -gt "0" ]
+do
    fill="${fill}-"
    let fillsize=${fillsize}-1
 done
@@ -105,7 +105,7 @@ $color$LIGHT_BLUE\
 $LIGHT_RED\$(date +%H%M)$LIGHT_BLUE:$LIGHT_RED\$(date \"+%a,%d %b %y\")\
 $LIGHT_BLUE)-\
 $LIGHT_RED-\
-$NO_COLOUR$ESC # " 
+$NO_COLOUR$ESC # "
 else
 PS1="\n$TITLEBAR\
 $YELLOW-$LIGHT_BLUE-(\
@@ -119,7 +119,7 @@ $color$LIGHT_BLUE\
 $YELLOW\$(date +%H%M)$LIGHT_BLUE:$YELLOW\$(date \"+%a,%d %b %y\")\
 $LIGHT_BLUE)-\
 $YELLOW-\
-$NO_COLOUR$ESC $ " 
+$NO_COLOUR$ESC $ "
 fi
 
 #PS2="$LIGHT_BLUE-$YELLOW-$YELLOW-$NO_COLOUR "
