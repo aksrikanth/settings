@@ -1,0 +1,15 @@
+set expandtab
+set ts=2
+set sw=2
+
+set guifont=Monaco\ 9
+
+map <F2> :vsplit:vsplit
+
+cabbr c ~/current/frontend/app/controllers/**
+cabbr h ~/current/frontend/app/helpers/**
+cabbr m ~/current/frontend/app/models/**
+cabbr t ~/current/frontend/spec/**
+cabbr v ~/current/frontend/app/views/**
+cabbr j ~/current/frontend/public/javascripts/**
+cabbr s ~/current/frontend/public/stylesheets/**
