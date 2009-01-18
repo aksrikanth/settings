@@ -1,7 +1,6 @@
 "set guifontset=-misc-fixed-*-*-normal--20-*-*-*-c-*-iso8859-1
 "set guifontset=-adobe-courier-*-r-normal--20-*-*-*-*-*-iso8859-1
 colorscheme torte
-set guifont=Monaco\ 8
 
 execute 'set listchars+=tab:' . nr2char(187) . nr2char(183) . ',eol:' . nr2char(172)
 
