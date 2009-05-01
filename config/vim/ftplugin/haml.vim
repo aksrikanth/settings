@@ -1,66 +1,107 @@
-" Vim filetype plugin
-" Language:		Haml
-" Maintainer:		Tim Pope <vimNOSPAM@tpope.info>
+setlocal foldmethod=expr
+setlocal foldexpr=HamlFoldExpr(v:lnum)
+setlocal foldtext=HamlFoldText()
 
-" Only do this when not done yet for this buffer
-if exists("b:did_ftplugin")
-  finish
-endif
+"-----------------------------------------------------------------------------
+function! s:GetFoldLevel(lnum,min_indent)
+    let result = 0
 
-let s:save_cpo = &cpo
-set cpo-=C
+    let lindent = indent(a:lnum)
+    if lindent==0
+        " let's make it short if we reached the root of a fold
+        return 0
+    endif
 
-" Define some defaults in case the included ftplugins don't set them.
-let s:undo_ftplugin = ""
-let s:browsefilter = "All Files (*.*)\t*.*\n"
-let s:match_words = ""
+    let cnum = prevnonblank(a:lnum-1)
+    while cnum > 0
+        let cindent = indent(cnum)
+        if cindent >= lindent
+            " Skip a line that has a greater indentation than the consiedered
+            " indentation.
+            let cnum = prevnonblank(cnum-1)
+            continue
+        endif
 
-runtime! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
-unlet! b:did_ftplugin
+        let lindent = cindent
 
-" Override our defaults if these were set by an included ftplugin.
-if exists("b:undo_ftplugin")
-  let s:undo_ftplugin = b:undo_ftplugin
-  unlet b:undo_ftplugin
-endif
-if exists("b:browsefilter")
-  let s:browsefilter = b:browsefilter
-  unlet b:browsefilter
-endif
-if exists("b:match_words")
-  let s:match_words = b:match_words
-  unlet b:match_words
-endif
+        let line = getline(cnum)
+        if line =~ '^\s*/'
+            " Found the marker of a new fold
+            if cindent >= a:min_indent
+                " This fold is an ancestor
+                let result += 1
+            endif
+        endif
 
-runtime! ftplugin/ruby.vim ftplugin/ruby_*.vim ftplugin/ruby/*.vim
-let b:did_ftplugin = 1
+        if cindent == 0
+            " Reached the root of a fold: the scan is complete
+            break
+        endif
 
-" Combine the new set of values with those previously included.
-if exists("b:undo_ftplugin")
-  let s:undo_ftplugin = b:undo_ftplugin . " | " . s:undo_ftplugin
-endif
-if exists ("b:browsefilter")
-  let s:browsefilter = substitute(b:browsefilter,'\cAll Files (\*\.\*)\t\*\.\*\n','','') . s:browsefilter
-endif
-if exists("b:match_words")
-  let s:match_words = b:match_words . ',' . s:match_words
-endif
+        let cnum = prevnonblank(cnum-1)
+    endwhile
 
-" Change the browse dialog on Win32 to show mainly Haml-related files
-if has("gui_win32")
-  let b:browsefilter="Haml Files (*.haml)\t*.haml\nSass Files (*.sass)\t*.sass\n" . s:browsefilter
-endif
+    return result
+endfunction
 
-" Load the combined list of match_words for matchit.vim
-if exists("loaded_matchit")
-  let b:match_words = s:match_words
-endif
+"-----------------------------------------------------------------------------
+function! HamlFoldExpr(lnum)
+    let line = getline(a:lnum)
 
-setlocal commentstring=-#\ %s
+    if strlen(line) == 0 || line =~ '^\s*$'
+        " Ignore blank lines
+        return "="
+    endif
 
-let b:undo_ftplugin = "setl cms< com< "
-      \ " | unlet! b:browsefilter b:match_words | " . s:undo_ftplugin
+    if line =~ '^\s*/'
+        " Found a marker: figure out what level it is at and return an
+        " incremented value
+        return '>'.string(1+s:GetFoldLevel(a:lnum,0))
+    endif
 
-let &cpo = s:save_cpo
+    let indent = indent(a:lnum)
+    if indent == 0
+        return '0'
+    endif
 
-" vim:set sw=2:
+    " If the next line is a de-indent that is greater than the current fold ->
+    " close the fold
+    let nnum = nextnonblank(a:lnum+1)
+    if nnum < 0
+        " End of file
+        return '='
+    endif
+
+    let nindent = indent(nnum)
+    if nindent >= indent
+        " Indentation of the next line is bigger than this one
+        return '='
+    endif
+
+    " At this point we know that there is a de-indentation.
+    " If this is a continuation, then we should ignore the de-indentation
+    if line[-1:] == '|' && line !~ 'do\s+|.*|$'
+        let nline = getline(nnum)
+        if nline[-1:] == '|' && nline !~ 'do\s+|.*|$'
+            return '='
+        endif
+    endif
+
+    " We need to search the file backwards to find the previous known folding
+    " ancestor that has an identation level at least as small as the next line.
+    let deindent = s:GetFoldLevel(a:lnum,nindent)
+    if deindent > 0
+        return 's'.string(deindent)
+    endif
+
+    return '='
+
+endfunction
+
+"-----------------------------------------------------------------------------
+function! HamlFoldText()
+    let line_count = 1+v:foldend-v:foldstart
+    let text = substitute(getline(v:foldstart), '^.*/\s\+\(.*\)$', '\1', '')
+    return ' ** '.text.' - '.string(line_count).' lines '
+endfunction
+

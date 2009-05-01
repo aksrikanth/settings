@@ -91,6 +91,7 @@ nnoremap <silent><home> :call <SID>SmartHome()<CR>
 vnoremap <silent><home> :call <SID>SmartHome()<CR>
 
 filetype indent on
+filetype plugin on
 syntax on
 
 let extfile = expand("<sfile>:h") . "/.local_vimrc"

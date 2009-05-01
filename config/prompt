@@ -80,7 +80,8 @@ local LIGHT_BLUE="\[\033[1;34m\]"
 local YELLOW="\[\033[1;33m\]"
 local LIGHT_RED="\[\033[1;31m\]"
 
-local ESC="\033k\033\134"
+#local ESC="\033k\033\134"
+local ESC=""
 
 case $TERM in
   xterm*)
