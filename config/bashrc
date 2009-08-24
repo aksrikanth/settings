@@ -3,6 +3,7 @@
 [ -f /etc/bashrc ] && . /etc/bashrc
 [ -f /etc/profile ] && . /etc/profile
 
+export LC_COLLATE=C
 export KDEDIR=/usr
 export QTDIR=/usr/share/qt3
 
@@ -15,9 +16,10 @@ then
 	twttypow
 fi
 
-export TERM=xterm
-export TERM=vt100
-export TERM=xterm-color
+if [ "$COLORTERM" == "gnome-terminal" ]; then
+    export TERM=xterm-256color
+fi
+
 export PATH=$PATH:$HOME/settings/bin
 
 # enable color support of ls and also add handy aliases

@@ -11,7 +11,7 @@
 # Software Foundation.
 #
 
-vimdiff="vimdiff"
+vimdiff="gvimdiff -f"
 suffix="vimgitdiff"
 if [[ $1 == "-g" ]] ; then
   vimdiff="gvimdiff -f"

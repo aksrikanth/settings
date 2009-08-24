@@ -49,33 +49,14 @@ set viminfo='20,\"50
 set showcmd
 set directory=~/tmp
 set ttymouse=xterm2
-set list
+set cursorline
 set listchars=eol:-,tab:+-,extends:+,precedes:<,nbsp:~
 
-hi NonText ctermfg=darkmagenta
-hi SpecialKey ctermfg=darkmagenta
+" Default colorscheme
+colorscheme jellybeans
 
-" Removes trailing spaces and collapses multiple empty lines to single ones
-if &diff
-else
-	if !exists("g:trailing_spaces")
-		let g:trailing_spaces = 0
-		function! TrimWhiteSpace()
-			mkview
-			norm zR
-			kK
-			silent %s/\s*$//
-			silent! v_._,/./-1join
-			silent loadview
-			norm `K
-		endfunction
-
-		autocmd FileWritePre * :call TrimWhiteSpace()
-		autocmd FileAppendPre * :call TrimWhiteSpace()
-		autocmd FilterWritePre * :call TrimWhiteSpace()
-		autocmd BufWritePre * :call TrimWhiteSpace()
-	endif
-endif
+highlight NonText ctermfg=darkmagenta
+highlight SpecialKey ctermfg=darkmagenta
 
 function! s:SmartHome()
 	" this line checks if we are not on the first whitespace.
@@ -94,8 +75,6 @@ filetype indent on
 filetype plugin on
 syntax on
 
-let extfile = expand("<sfile>:h") . "/.local_vimrc"
-
 let python_highlight_all = 1
 
 au FileType datalog source ~/.vim/datalog.vim
@@ -104,7 +83,10 @@ augroup mkd
 	autocmd BufRead *.mkd  set ai spell spelllang=en_us formatoptions=tcroqn2 comments=n:>
 augroup END
 
+let extfile = expand("<sfile>:h") . "/.local_vimrc"
+
 if filereadable(extfile)
 	source <sfile>:h/.local_vimrc
 endif
+
 " vim:set noexpandtab ts=4 sw=4 :
