@@ -7,7 +7,7 @@ alias mlouder='mplayer -af volume=30.1:0'
 alias msoft='mplayer -af volume=-30.1:0'
 alias rg='rgrep --exclude-dir=log --exclude-dir=vendor'
 alias java='java -Xms16m -Xmx1024m'
-alias webcam='mplayer -tv driver=v4l2:device=/dev/video0:width=640:height=480:fps=30 tv://'
 alias log='vi ~/datalog/current.datalog'
-
+alias music='ogg123 http://srikanthak.name:8000/mpd.ogg'
+alias webcam='mplayer -tv driver=v4l2:device=/dev/video0:width=640:height=480:fps=30 tv://'
 # vim: set filetype=sh :
