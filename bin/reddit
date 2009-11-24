@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'net/http'
+
+user = 'akincisor'
+pass = 'q1w2e3r4'
+
+http = Net::HTTP.new('www.reddit.com')
+post = Net::HTTP::Post.new('/post/login')
+post.set_form_data({'user' => user, 'passwd' => pass})
+resp = http.request(post)
+resp = http.get('/', {'Cookie' => resp['set-cookie']})
+
+if resp.body.match(/static\/mail\.png/)
+  puts "#{user}@reddit.com: unread message(s)."
+else
+  puts "#{user}@reddit.com: no unread message(s)."
+end
