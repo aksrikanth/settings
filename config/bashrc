@@ -1,7 +1,7 @@
-# vim:set noexpandtab ts=4 sw=4:
-
 [ -f /etc/bashrc ] && . /etc/bashrc
 [ -f /etc/profile ] && . /etc/profile
+
+[ -f ~/.local_bashrc ] && . ~/.local_bashrc
 
 export LC_COLLATE=C
 export KDEDIR=/usr
@@ -12,27 +12,15 @@ export QTDIR=/usr/share/qt3
 
 if [ "x$TERM" != "x" ]
 then
-	. ~/.prompt
-	twttypow
+  . ~/.prompt
+  twttypow
 fi
 
 if [ "$COLORTERM" == "gnome-terminal" ]; then
-    export TERM=xterm-256color
+  export TERM=xterm-256color
 fi
 
 export PATH=$PATH:$HOME/settings/bin
-
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-	eval "`dircolors -b`"
-	alias ls='ls --color=auto'
-	alias dir='ls --color=auto --format=vertical'
-	alias vdir='ls --color=auto --format=long'
-
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups

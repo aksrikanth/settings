@@ -48,21 +48,21 @@ then
 fi
 
 case "$state" in
-	done)
-	color=$GREEN
-	;;
-	*)
-	if [ $power -lt 30 ]
-	then
-		if [ $power -lt 10 ]
-		then
-			color=$LIGHT_RED
-		else
-			color=$YELLOW
-		fi
-	else
-		color=$LIGHT_BLUE
-	fi
+  done)
+  color=$GREEN
+  ;;
+  *)
+  if [ $power -lt 30 ]
+  then
+    if [ $power -lt 10 ]
+    then
+      color=$LIGHT_RED
+    else
+      color=$YELLOW
+    fi
+  else
+    color=$LIGHT_BLUE
+  fi
 esac
 }
 

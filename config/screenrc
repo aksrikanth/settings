@@ -755,7 +755,3 @@ screen
 # echo "welcome to screen :-)"
 #
 # !THPXRF!
-# Tell Vim to use a "tabstop" of '8',
-# ie expands TABs to the next column
-# whose number is a multiple of eight.
-# vim: ts=8 et nowrap

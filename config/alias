@@ -1,8 +1,13 @@
 alias ps='ps U srikanth'
 alias vi='2>/dev/null gvim'
 alias mplayer='mplayer -stop-xscreensaver'
-eval "`dircolors`"
-alias ls='ls --color=auto'
+if [ `which dircolors` ]; then
+  eval "`dircolors`"
+  alias ls='ls --color=auto'
+elif [ `which gdircolors` ]; then
+  eval "`gdircolors`"
+  alias ls='ls -G'
+fi
 alias mpdev='mplayer -ao oss:/dev/dsp1'
 alias java='java -Xms16m -Xmx1024m'
 alias log='vi ~/datalog/current.datalog'
