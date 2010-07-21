@@ -25,3 +25,5 @@
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [branch]
 	autosetupmerge = true
+[push]
+	default = matching
