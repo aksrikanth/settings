@@ -26,4 +26,4 @@
 [branch]
 	autosetupmerge = true
 [push]
-	default = matching
+	default = current
