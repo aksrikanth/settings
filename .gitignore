@@ -1,1 +1,5 @@
 config/vim/view/*
+config/vim/.VimballRecord
+config/vim/.netrwhist
+config/vim/GetLatest/Installed
+config/vim/GetLatest/*.dist

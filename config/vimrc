@@ -76,12 +76,18 @@ endfun
 inoremap <silent><home> <C-O>:call <SID>SmartHome()<CR>
 nnoremap <silent><home> :call <SID>SmartHome()<CR>
 vnoremap <silent><home> :call <SID>SmartHome()<CR>
+inoremap <C-CR> <esc>
+vnoremap <C-CR> <esc>
+cnoremap <C-CR> <esc>
+nnoremap <C-CR> <nop>
 
 filetype indent on
 filetype plugin on
 syntax on
 
 let python_highlight_all = 1
+
+let mapleader = ','
 
 let extfile = expand("<sfile>:h") . "/.local_vimrc"
 
