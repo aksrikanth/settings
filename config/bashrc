@@ -1,11 +1,10 @@
 [ -f /etc/bashrc ] && . /etc/bashrc
 [ -f /etc/profile ] && . /etc/profile
 
-[ -f ~/.local_bashrc ] && . ~/.local_bashrc
-
 export LC_COLLATE=C
 export KDEDIR=/usr
 export QTDIR=/usr/share/qt3
+export EDITOR=vim
 
 . ~/.alias
 [ -f ~/.local_alias ] && . ~/.local_alias
@@ -37,3 +36,6 @@ shopt -s checkwinsize
 # This line was appended by KDE
 # Make sure our customised gtkrc file is loaded.
 export GTK2_RC_FILES=$HOME/.gtkrc-2.0
+
+# Ensure that local settings override the defaults
+[ -f ~/.local_bashrc ] && . ~/.local_bashrc
