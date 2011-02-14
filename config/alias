@@ -1,4 +1,4 @@
-alias ps='ps U srikanth'
+alias ps='ps U $USER'
 alias vi='2>/dev/null gvim'
 alias mplayer='mplayer -stop-xscreensaver'
 if [ `which dircolors` ]; then
