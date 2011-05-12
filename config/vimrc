@@ -1,31 +1,6 @@
-if &cp | set nocp | endif
-let s:cpo_save=&cpo
-set cpo&vim
-map! <xHome> <Home>
-map! <xEnd> <End>
-map! <S-xF4> <S-F4>
-map! <S-xF3> <S-F3>
-map! <S-xF2> <S-F2>
-map! <S-xF1> <S-F1>
-map! <xF4> <F4>
-map! <xF3> <F3>
-map! <xF2> <F2>
-map! <xF1> <F1>
-map <xHome> <Home>
-map <xEnd> <End>
-map <S-xF4> <S-F4>
-map <S-xF3> <S-F3>
-map <S-xF2> <S-F2>
-map <S-xF1> <S-F1>
-map <xF4> <F4>
-map <xF3> <F3>
-map <xF2> <F2>
-map <xF1> <F1>
-
-map! <C-e> <esc>
-
-let &cpo=s:cpo_save
-unlet s:cpo_save
+if &cp
+  set nocp
+endif
 
 set showcmd
 set helplang=en
@@ -65,24 +40,6 @@ colorscheme jellybeans
 highlight NonText ctermfg=darkmagenta
 highlight SpecialKey ctermfg=darkmagenta
 
-" Improve home key behavior
-function! s:SmartHome()
-  " this line checks if we are not on the first whitespace.
-  if col('.') != match(getline('.'), '\S')+1
-    norm ^
-  else
-    norm 0
-  endif
-endfun
-
-inoremap <silent><home> <C-O>:call <SID>SmartHome()<CR>
-nnoremap <silent><home> :call <SID>SmartHome()<CR>
-vnoremap <silent><home> :call <SID>SmartHome()<CR>
-inoremap <C-CR> <esc>
-vnoremap <C-CR> <esc>
-cnoremap <C-CR> <esc>
-nnoremap <C-CR> <nop>
-
 filetype indent on
 filetype plugin on
 syntax on
@@ -96,46 +53,3 @@ let extfile = expand("<sfile>:h") . "/.local_vimrc"
 if filereadable(extfile)
   source <sfile>:h/.local_vimrc
 endif
-
-" Testing
-
-hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
-hi Modified guibg=orange guifg=black ctermbg=lightred ctermfg=black
-
-function! MyStatusLine(mode)
-    let statusline=""
-    if a:mode == 'Enter'
-        let statusline.="%#StatColor#"
-    endif
-    let statusline.="\(%n\)\ %f\ "
-    if a:mode == 'Enter'
-        let statusline.="%*"
-    endif
-    let statusline.="%#Modified#%m"
-    if a:mode == 'Leave'
-        let statusline.="%*%r"
-    elseif a:mode == 'Enter'
-        let statusline.="%r%*"
-    endif
-    let statusline .= "\ (%l/%L,\ %c)\ %P%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]\ \ "
-    return statusline
-endfunction
-
-au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
-au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
-set statusline=%!MyStatusLine('Enter')
-
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi StatColor guibg=orange ctermbg=lightred
-  elseif a:mode == 'r'
-    hi StatColor guibg=#e454ba ctermbg=magenta
-  elseif a:mode == 'v'
-    hi StatColor guibg=#e454ba ctermbg=magenta
-  else
-    hi StatColor guibg=red ctermbg=red
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
