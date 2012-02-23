@@ -1,6 +1,3 @@
-alias ps='ps U $USER'
-alias vi='2>/dev/null gvim'
-alias mplayer='mplayer -stop-xscreensaver'
 if [ `which dircolors` ]; then
   eval "`dircolors`"
   alias ls='ls --color=auto'
@@ -8,11 +5,20 @@ elif [ `which gdircolors` ]; then
   eval "`gdircolors`"
   alias ls='ls -G'
 fi
-alias mpdev='mplayer -ao oss:/dev/dsp1'
+
+alias ps='ps U $USER'
+alias vi='2>/dev/null gvim'
+alias mplayer='mplayer -stop-xscreensaver'
+
 alias java='java -Xms16m -Xmx1024m'
-alias log='vi ~/datalog/current.datalog'
-alias music='ogg123 http://srikanthak.name:8000/mpd.ogg'
 alias webcam='mplayer -tv driver=v4l2:device=/dev/video0:width=640:height=480:fps=30 tv://'
-alias su='sudo -s'
+
 alias glog='git log --author=srikanth --no-merges'
-alias gnew='git log --author=srikanth --no-merges origin/trunk..HEAD'
+alias gnew='git log --author=srikanth --no-merges origin/master..HEAD'
+alias glast='git log origin/master@{1}..origin/master@{0}'
+
+alias be='bundle exec'
+alias c='bundle exec rails console'
+alias r='bundle exec rake'
+alias s='bundle exec rails server thin'
+alias t='bundle exec rspec'

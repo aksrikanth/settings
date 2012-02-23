@@ -3,13 +3,24 @@ set ts=2
 set sw=2
 
 set guifont=Monaco\ 9
+set colorcolumn=120
 
 map <F2> :vsplit:vsplit
 
-cabbr c ~/current/frontend/app/controllers/**
-cabbr h ~/current/frontend/app/helpers/**
-cabbr m ~/current/frontend/app/models/**
-cabbr t ~/current/frontend/spec/**
-cabbr v ~/current/frontend/app/views/**
-cabbr j ~/current/frontend/public/javascripts/**
-cabbr s ~/current/frontend/public/stylesheets/**
+cabbr a app/mailers/**
+cabbr c app/controllers/**
+cabbr f config/**
+cabbr h app/helpers/**
+cabbr j app/assets/javascripts/**
+cabbr l lib/**
+cabbr m app/models/**
+cabbr s app/assets/stylesheets/**
+cabbr t spec/**
+cabbr tc spec/controllers/**
+cabbr tf spec/support/factories/**
+cabbr th spec/helpers/**
+cabbr tl spec/lib/**
+cabbr tm spec/models/**
+cabbr ts spec/support/**
+cabbr tv spec/views/**
+cabbr v app/views/**

@@ -33,6 +33,7 @@ set wildmenu
 set listchars=eol:-,tab:+-,extends:+,precedes:<,nbsp:~
 set foldmethod=marker
 set background=dark
+set colorcolumn=81
 
 " Default colorscheme
 colorscheme jellybeans
@@ -53,3 +54,5 @@ let extfile = expand("<sfile>:h") . "/.local_vimrc"
 if filereadable(extfile)
   source <sfile>:h/.local_vimrc
 endif
+
+call pathogen#infect()

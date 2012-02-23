@@ -6,20 +6,11 @@ export KDEDIR=/usr
 export QTDIR=/usr/share/qt3
 export EDITOR=vim
 
-. ~/.alias
-[ -f ~/.local_alias ] && . ~/.local_alias
-
-if [ "x$TERM" != "x" ]
-then
-  . ~/.prompt
-  twttypow
-fi
-
 if [ "$COLORTERM" == "gnome-terminal" ]; then
   export TERM=xterm-256color
 fi
 
-export PATH=$PATH:$HOME/settings/bin
+export PATH=$PATH:$HOME/settings/bin:$HOME/.local_bin
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -36,6 +27,20 @@ shopt -s checkwinsize
 # This line was appended by KDE
 # Make sure our customised gtkrc file is loaded.
 export GTK2_RC_FILES=$HOME/.gtkrc-2.0
+
+. ~/.alias
+[ -f ~/.local_alias ] && . ~/.local_alias
+
+if [ "x$TERM" != "x" ]
+then
+  . ~/.prompt
+  twttypow
+fi
+
+function cdp() {
+  pushd `find "$HOME/work/projects" -type d -maxdepth 2 | grep '^.*/'$1'$' | \
+    awk '{ print length($0),$0 | "sort -n"}' | head -1 | sed 's@^.* @@'`
+}
 
 # Ensure that local settings override the defaults
 [ -f ~/.local_bashrc ] && . ~/.local_bashrc
