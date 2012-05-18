@@ -24,6 +24,8 @@ hostnam=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 #   "whoami" and "pwd" include a trailing newline
 usernam=$(whoami)
 cur_tty=$(tty | sed -e "s/.*tty\(.*\)/\1/")
+branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+export BRANCH=$branch
 newPWD="${PWD}"
 #power=$(apm | sed -e "s/.*: \([1-9][0-9]*\)%/\1/" | tr -d " ")
 #power=$(( `cat /proc/acpi/battery/BAT0/state | grep rem | awk '{}{print $3}'`/480 ))
@@ -31,7 +33,7 @@ newPWD="${PWD}"
 state="done"
 
 #   Add all the accessories below ...
-let promptsize=$(echo -n "--(${usernam}@${hostnam}:${cur_tty})---(${PWD})--" \
+let promptsize=$(echo -n "--(${usernam}@${hostnam}:${cur_tty}:${branch})---(${PWD})--" \
                  | wc -c | tr -d " ")
 let fillsize=${TERMWIDTH}-${promptsize}
 fill=""
@@ -92,36 +94,36 @@ case $TERM in
      ;;
 esac
 
+if [ -n $branch ]
+then
+  branch_fragment="$LIGHT_BLUE:$GREEN\$branch"
+else
+  branch_fragment=""
+fi
+
 if [ `whoami` = "root" ]
 then
-PS1="\n$TITLEBAR\
-$LIGHT_RED-$LIGHT_BLUE-(\
-$LIGHT_RED\$usernam$LIGHT_BLUE@$LIGHT_RED\$hostnam$LIGHT_BLUE:$WHITE\$cur_tty\
-${LIGHT_BLUE})-${LIGHT_RED}-\${fill}${LIGHT_BLUE}-(\
-$GREEN\${newPWD}\
-$LIGHT_BLUE)-$LIGHT_RED-\
-\n\
-$LIGHT_RED-$LIGHT_BLUE-(\
-$color$LIGHT_BLUE\
-$LIGHT_RED\$(date +%H%M)$LIGHT_BLUE:$LIGHT_RED\$(date \"+%a,%d %b %y\")\
-$LIGHT_BLUE)-\
-$LIGHT_RED-\
-$NO_COLOUR$ESC # "
+  BASE_COLOR=$LIGHT_RED
+  PROMPT_CHAR="#"
 else
-PS1="\n$TITLEBAR\
-$YELLOW-$LIGHT_BLUE-(\
-$YELLOW\$usernam$LIGHT_BLUE@$YELLOW\$hostnam$LIGHT_BLUE:$WHITE\$cur_tty\
-${LIGHT_BLUE})-${YELLOW}-\${fill}${LIGHT_BLUE}-(\
-$GREEN\${newPWD}\
-$LIGHT_BLUE)-$YELLOW-\
-\n\
-$YELLOW-$LIGHT_BLUE-(\
-$color$LIGHT_BLUE\
-$YELLOW\$(date +%H%M)$LIGHT_BLUE:$YELLOW\$(date \"+%a,%d %b %y\")\
-$LIGHT_BLUE)-\
-$YELLOW-\
-$NO_COLOUR$ESC $ "
+  BASE_COLOR=$YELLOW
+  PROMPT_CHAR="$"
 fi
+
+PS1="\n$TITLEBAR\
+$BASE_COLOR-$LIGHT_BLUE-(\
+$BASE_COLOR\$usernam$LIGHT_BLUE@$BASE_COLOR\$hostnam$LIGHT_BLUE:$WHITE\$cur_tty\
+$LIGHT_BLUE:$GREEN\$branch\
+$LIGHT_BLUE)-$BASE_COLOR-\$fill$LIGHT_BLUE-(\
+$GREEN\${newPWD}\
+$LIGHT_BLUE)-$BASE_COLOR-\
+\n\
+$BASE_COLOR-$LIGHT_BLUE-(\
+$color$LIGHT_BLUE\
+$BASE_COLOR\$(date +%H%M)$LIGHT_BLUE:$BASE_COLOR\$(date \"+%a,%d %b %y\")\
+$LIGHT_BLUE)-\
+$BASE_COLOR-\
+$NO_COLOUR$ESC $PROMPT_CHAR "
 
 #PS2="$LIGHT_BLUE-$YELLOW-$YELLOW-$NO_COLOUR "
 PS2="   "

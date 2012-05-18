@@ -38,9 +38,12 @@ then
 fi
 
 function cdp() {
-  pushd `find "$HOME/work/projects" -type d -maxdepth 2 | grep '^.*/'$1'$' | \
+  pushd `find "$HOME/work/projects" -type d -maxdepth 3 | grep '^.*/'$1'$' | \
     awk '{ print length($0),$0 | "sort -n"}' | head -1 | sed 's@^.* @@'`
 }
 
 # Ensure that local settings override the defaults
 [ -f ~/.local_bashrc ] && . ~/.local_bashrc
+
+# Git completion
+[ -f ~/settings/bin/git-completion.sh ] && . ~/settings/bin/git-completion.sh

@@ -26,3 +26,9 @@ set guioptions-=b
 
 " CTRL+F11 to toggle the menu bar
 nmap <C-F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
+
+let extfile = expand("<sfile>:h") . "/.local_gvimrc"
+
+if filereadable(extfile)
+  source <sfile>:h/.local_gvimrc
+endif
