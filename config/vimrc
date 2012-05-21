@@ -55,4 +55,23 @@ if filereadable(extfile)
   source <sfile>:h/.local_vimrc
 endif
 
+cabbr a app/mailers/**
+cabbr c app/controllers/**
+cabbr d db/**
+cabbr f config/**
+cabbr h app/helpers/**
+cabbr j app/assets/javascripts/**
+cabbr l lib/**
+cabbr m app/models/**
+cabbr s app/assets/stylesheets/**
+cabbr t spec/**
+cabbr tc spec/controllers/**
+cabbr tf spec/support/factories/**
+cabbr th spec/helpers/**
+cabbr tl spec/lib/**
+cabbr tm spec/models/**
+cabbr ts spec/support/**
+cabbr tv spec/views/**
+cabbr v app/views/**
+
 call pathogen#infect()
