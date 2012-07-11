@@ -38,7 +38,7 @@ then
 fi
 
 function cdp() {
-  pushd `find "$HOME/work/projects" -type d -maxdepth 3 | grep '^.*/'$1'$' | \
+  pushd `find "$HOME/work/projects" -maxdepth 3 -type d | grep '^.*/'$1'$' | \
     awk '{ print length($0),$0 | "sort -n"}' | head -1 | sed 's@^.* @@'`
 }
 
