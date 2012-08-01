@@ -1,0 +1,5 @@
+# Enable mouse actions
+setw -g mode-mouse
+set -g mouse-resize-pane
+set -g mouse-select-pane
+set -g mouse-select-window
