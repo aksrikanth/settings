@@ -1,11 +1,8 @@
-" guifontset should be set in local_vimrc
-
-" Use unicode for special characters
-execute 'set listchars+=tab:' . nr2char(187) . nr2char(183) . ',eol:' . nr2char(172)
+" guifontset should be set in local_gvimrc
 
 " Magenta for special characters
-highlight NonText guifg=DarkMagenta guibg=black gui=NONE
-highlight SpecialKey guifg=DarkMagenta guibg=black gui=NONE
+highlight NonText guifg=DarkMagenta guibg=#151515 gui=NONE
+highlight SpecialKey guifg=DarkMagenta guibg=#151515 gui=NONE
 
 " Turn off useless toolbar
 set guioptions-=T

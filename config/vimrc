@@ -2,6 +2,8 @@ if &cp
   set nocp
 endif
 
+set encoding=utf-8
+
 set showcmd
 set helplang=en
 set history=50
@@ -30,20 +32,20 @@ set directory=~/tmp
 set modeline
 set wildmenu
 
-set listchars=eol:-,tab:+-,extends:+,precedes:<,nbsp:~
+set listchars=eol:⊸,tab:⊩⊣,extends:▻,precedes:◅,nbsp:░
 set foldmethod=marker
 set background=dark
 set colorcolumn=81
 
-" Default colorscheme
-colorscheme jellybeans
-
-highlight NonText ctermfg=darkmagenta
-highlight SpecialKey ctermfg=darkmagenta
-
 filetype indent on
 filetype plugin on
 syntax on
+
+" Default colorscheme
+colorscheme jellybeans
+
+highlight NonText ctermfg=DarkMagenta ctermbg=black
+highlight SpecialKey ctermfg=DarkMagenta ctermbg=black
 
 let python_highlight_all = 1
 
