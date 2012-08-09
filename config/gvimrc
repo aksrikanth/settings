@@ -4,6 +4,9 @@
 highlight NonText guifg=DarkMagenta guibg=#151515 gui=NONE
 highlight SpecialKey guifg=DarkMagenta guibg=#151515 gui=NONE
 
+" Use console dialogs instead of popups
+set guioptions+=c
+
 " Turn off useless toolbar
 set guioptions-=T
 
