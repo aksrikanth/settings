@@ -8,7 +8,7 @@ function prompt_command () {
   branch=$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^.* //' )
   if [ -z $branch ]
   then
-    branch=" "
+    branch="∅"
   fi
   directory="${PWD}"
 

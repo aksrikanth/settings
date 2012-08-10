@@ -1,4 +1,4 @@
-" guifontset should be set in local_gvimrc
+" guifont should be set in local_gvimrc
 
 " Magenta for special characters
 highlight NonText guifg=DarkMagenta guibg=#151515 gui=NONE
@@ -10,9 +10,6 @@ set guioptions+=c
 " Turn off useless toolbar
 set guioptions-=T
 
-" Turn off menu bar (toggle with CTRL+F11)
-set guioptions-=m
-
 " Turn off right-hand scroll-bar
 set guioptions-=r
 set guioptions-=R
@@ -23,6 +20,9 @@ set guioptions-=L
 
 " Turn off bottom scroll-bar
 set guioptions-=b
+
+" Turn off menu bar (toggle with CTRL+F11)
+set guioptions-=m
 
 " CTRL+F11 to toggle the menu bar
 nmap <C-F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>

@@ -32,7 +32,7 @@ set directory=~/tmp
 set modeline
 set wildmenu
 
-set listchars=eol:⊸,tab:⊩⊣,extends:▻,precedes:◅,nbsp:░
+set listchars=eol:⊸,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
 set foldmethod=marker
 set background=dark
 set colorcolumn=81
