@@ -5,15 +5,18 @@
 function prompt_command () {
   username=$( whoami )
   hostname=$( hostname -s )
+  directory="${PWD}"
+  let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
   branch=$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^.* //' )
+  let branch_size=$( echo -n "${branch}"| wc -c | sed 's/^ *//; s/ *$//' )
   if [ -z $branch ]
   then
     branch="∅"
+    let branch_size=1
   fi
-  directory="${PWD}"
 
-  let promptsize=$( echo -n "--(${branch})---(${directory})--" | wc -c | sed 's/^ *//; s/ *$//' )
-  let fillsize=${COLUMNS}-${promptsize}
+  let promptsize=$( echo -n "--()---()--"| wc -c | sed 's/^ *//; s/ *$//' )
+  let fillsize=${COLUMNS}-${promptsize}-${branch_size}-${directory_size}
   fill=''
 
   if [ "${fillsize}" -lt "0" ]
@@ -21,7 +24,7 @@ function prompt_command () {
     let cut=$(( 3 - ${fillsize} ))
     directory="...$( echo -n $directory | sed "s/^.\{$cut}//" )"
   else
-    fill=$( printf "%${fillsize}d" 0 | sed s/./-/g )
+    fill=$( printf "%0${fillsize}d" 0 | sed s/./–/g )
   fi
 }
 
@@ -54,10 +57,10 @@ function twttypow () {
   fi
 
   PS1="\n\
-${BASE_COLOR}-${LIGHT_BLUE}-(${GREEN}\${branch}${LIGHT_BLUE})-\
-${BASE_COLOR}-\${fill}${LIGHT_BLUE}-(${GREEN}\${directory}${LIGHT_BLUE})-${BASE_COLOR}-\n\
-${BASE_COLOR}-${LIGHT_BLUE}-(${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE})-\
-${BASE_COLOR}-${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
+${BASE_COLOR}–${LIGHT_BLUE}–{${GREEN}\${branch}${LIGHT_BLUE}}–\
+${BASE_COLOR}–\${fill}${LIGHT_BLUE}–{${GREEN}\${directory}${LIGHT_BLUE}}–${BASE_COLOR}–\n\
+${BASE_COLOR}–${LIGHT_BLUE}–{${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}}–\
+${BASE_COLOR}–${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
 
   PS2="   "
 }
