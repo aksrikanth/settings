@@ -24,7 +24,7 @@ function prompt_command () {
     let cut=$(( 3 - ${fillsize} ))
     directory="...$( echo -n $directory | sed "s/^.\{$cut}//" )"
   else
-    fill=$( printf "%0${fillsize}d" 0 | sed s/./–/g )
+    fill=$( printf "%0${fillsize}d" 0 | sed s/./─/g )
   fi
 }
 
@@ -57,10 +57,10 @@ function twttypow () {
   fi
 
   PS1="\n\
-${BASE_COLOR}–${LIGHT_BLUE}–{${GREEN}\${branch}${LIGHT_BLUE}}–\
-${BASE_COLOR}–\${fill}${LIGHT_BLUE}–{${GREEN}\${directory}${LIGHT_BLUE}}–${BASE_COLOR}–\n\
-${BASE_COLOR}–${LIGHT_BLUE}–{${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}}–\
-${BASE_COLOR}–${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
+${BASE_COLOR}┌${LIGHT_BLUE}─┤${GREEN}\${branch}${LIGHT_BLUE}├─\
+${BASE_COLOR}─\${fill}${LIGHT_BLUE}─┤${GREEN}\${directory}${LIGHT_BLUE}├─${BASE_COLOR}─\n\
+${BASE_COLOR}└${LIGHT_BLUE}─┤${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}├─\
+${BASE_COLOR}─${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
 
   PS2="   "
 }
