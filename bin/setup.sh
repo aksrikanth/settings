@@ -5,3 +5,5 @@ do
   [ -f ".${f##*/}" ] && rm -f ".${f##*/}"
 	ln -sf $f .${f##*/}
 done
+
+mkdir -p ~/tmp/undo
