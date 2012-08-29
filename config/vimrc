@@ -57,6 +57,11 @@ if filereadable(extfile)
   source <sfile>:h/.local_vimrc
 endif
 
+" Tab navigation
+map <S-Left> gT
+map <S-Right> gt
+
+" Rails file editing
 cabbr a app/mailers/**
 cabbr c app/controllers/**
 cabbr d db/**
@@ -77,3 +82,6 @@ cabbr tv spec/views/**
 cabbr v app/views/**
 
 call pathogen#infect()
+
+nmap <leader>c <plug>CommentaryLine
+vmap <leader>c <plug>Commentary
