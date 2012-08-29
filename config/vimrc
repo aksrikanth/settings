@@ -32,6 +32,7 @@ set directory=~/tmp
 set modeline
 set wildmenu
 
+set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:─,diff:─
 set listchars=eol:⊸,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
 set foldmethod=marker
 set background=dark
@@ -41,11 +42,12 @@ filetype indent on
 filetype plugin on
 syntax on
 
+set t_Co=256
 " Default colorscheme
 colorscheme jellybeans
 
-highlight NonText ctermfg=DarkMagenta ctermbg=black
-highlight SpecialKey ctermfg=DarkMagenta ctermbg=black
+highlight NonText ctermfg=DarkMagenta
+highlight SpecialKey ctermfg=DarkMagenta
 
 let python_highlight_all = 1
 
