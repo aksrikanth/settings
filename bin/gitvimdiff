@@ -11,10 +11,10 @@
 # Software Foundation.
 #
 
-vimdiff="gvimdiff -f"
+vimdiff="vimdiff"
 suffix="vimgitdiff"
 if [[ $1 == "-g" ]] ; then
-  vimdiff="vimdiff"
+  vimdiff="gvimdiff -f"
   shift 1
 fi
 
