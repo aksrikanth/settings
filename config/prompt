@@ -22,7 +22,7 @@ function prompt_command () {
   if [ "${fillsize}" -lt "0" ]
   then
     let cut=$(( 3 - ${fillsize} ))
-    directory="...$( echo -n $directory | sed "s/^.\{$cut}//" )"
+    directory="...$( echo -n $directory | sed "s/^.\{$cut\}//" )"
   else
     fill=$( printf "%0${fillsize}d" 0 | sed s/./─/g )
   fi
