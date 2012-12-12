@@ -63,12 +63,15 @@ endif
 " Tab navigation
 map <S-Left> gT
 map <S-Right> gt
+imap <S-Left> <Esc>gT
+imap <S-Right> <Esc>gt
 
 " Rails file editing
 cabbr a app/mailers/**
 cabbr c app/controllers/**
 cabbr d db/**
 cabbr f config/**
+cabbr g app/migrators/**
 cabbr h app/helpers/**
 cabbr j app/assets/javascripts/**
 cabbr l lib/**
@@ -77,6 +80,7 @@ cabbr s app/assets/stylesheets/**
 cabbr t spec/**
 cabbr tc spec/controllers/**
 cabbr tf spec/support/factories/**
+cabbr tg spec/migrators/**
 cabbr th spec/helpers/**
 cabbr tl spec/lib/**
 cabbr tm spec/models/**
