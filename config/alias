@@ -12,6 +12,7 @@ alias mplayer='mplayer -stop-xscreensaver'
 alias mloud='mplayer -af volume=20.1:0'
 alias mlouder='mplayer -af volume=30.1:0'
 alias msoft='mplayer -af volume=-30.1:0'
+alias rg='rgrep --exclude-dir=log --exclude-dir=vendor'
 
 alias java='java -Xms16m -Xmx1024m'
 alias webcam='mplayer -tv driver=v4l2:device=/dev/video0:width=640:height=480:fps=30 tv://'

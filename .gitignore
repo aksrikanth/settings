@@ -1,5 +1,11 @@
-config/vim/view/*
+bin/tig
+config/ssh/authorized_keys
+config/ssh/ssh_auth_sock
+config/ssh/id*
+config/ssh/known_hosts
 config/vim/.VimballRecord
 config/vim/.netrwhist
-config/vim/GetLatest/Installed
 config/vim/GetLatest/*.dist
+config/vim/GetLatest/Installed
+config/vim/bundle/*
+config/vim/view/*
