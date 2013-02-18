@@ -7,9 +7,9 @@ function prompt_command () {
   hostname=$( hostname -s )
   directory="${PWD}"
   let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
-  branch=$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^.* //' )
+  branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
   let branch_size=$( echo -n "${branch}"| wc -c | sed 's/^ *//; s/ *$//' )
-  if [ -z $branch ]
+  if [ -z "$branch" ]
   then
     branch="∅"
     let branch_size=1
