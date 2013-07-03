@@ -1,0 +1,2 @@
+apt-get install nginx ruby ruby-dev build-essential zlib1g-dev libssl-dev libreadline5-dev libsqlite3-dev nodejs tmux
+gem install bundler
