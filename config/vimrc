@@ -1,6 +1,33 @@
-if &cp
-  set nocp
-endif
+set nocompatible
+
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Vim behavior
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/ZoomWin'
+Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
+
+" Filetype specific
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-markdown'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'pangloss/vim-javascript'
+
+" Colorschemes
+Plugin 'nanotech/jellybeans.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 set encoding=utf-8
 
@@ -50,8 +77,6 @@ highlight NonText ctermfg=DarkMagenta
 highlight SpecialKey ctermfg=DarkMagenta
 highlight ColorColumn ctermbg=53 guibg=#662244
 
-let python_highlight_all = 1
-
 let mapleader = ','
 
 " Tab navigation
@@ -93,7 +118,6 @@ if filereadable(extfile)
   source <sfile>:h/.local_vimrc
 endif
 
-call pathogen#infect()
-
 nmap <leader>c <plug>CommentaryLine
 vmap <leader>c <plug>Commentary
+nmap <leader>t :TagbarToggle<CR>
