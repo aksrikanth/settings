@@ -27,6 +27,14 @@ set guioptions-=m
 " CTRL+F11 to toggle the menu bar
 nmap <C-F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
 
+" Re-draw tab bar
+function! Retab()
+  set guioptions-=e
+  set guioptions+=e
+endfunction
+
+nmap <C-S-l> :call Retab()<cr>
+
 let extfile = expand("<sfile>:h") . "/.local_gvimrc"
 
 if filereadable(extfile)

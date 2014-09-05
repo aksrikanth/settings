@@ -7,12 +7,29 @@ function prompt_command () {
   hostname=$( hostname -s )
   directory="${PWD}"
   let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
-  branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
-  let branch_size=$( echo -n "${branch}"| wc -c | sed 's/^ *//; s/ *$//' )
-  if [ -z "$branch" ]
+  local_branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
+  if [ -z "$local_branch" ]
   then
-    branch="∅"
+    local_branch="∅"
+    counts=""
+    remote_branch=""
     let branch_size=1
+  else
+    remote_branch="$(
+      git for-each-ref --format='%(upstream:short)' `git symbolic-ref -q HEAD` | sed 's@^\(.\).*/\(.*\)$@\1/\2@'
+    )"
+    if [ -z "$remote_branch" ]
+    then
+      counts=""
+      let branch_size=$( echo -n "$local_branch" | wc -c | sed 's/^ *//; s/ *$//' )
+    else
+      let head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
+      let remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
+      counts=" $head_count:$remote_count "
+      let branch_size=$(
+        echo -n "$local_branch $head_count:$remote_count $remote_branch" | wc -c | sed 's/^ *//; s/ *$//'
+      )
+    fi
   fi
 
   let promptsize=$( echo -n "--()---()--"| wc -c | sed 's/^ *//; s/ *$//' )
@@ -57,7 +74,7 @@ function twttypow () {
   fi
 
   PS1="\n\
-${BASE_COLOR}┌${LIGHT_BLUE}─┤${GREEN}\${branch}${LIGHT_BLUE}├─\
+${BASE_COLOR}┌${LIGHT_BLUE}─┤${GREEN}\${local_branch}${LIGHT_BLUE}\${counts}${GREEN}\${remote_branch}${LIGHT_BLUE}├─\
 ${BASE_COLOR}─\${fill}${LIGHT_BLUE}─┤${GREEN}\${directory}${LIGHT_BLUE}├─${BASE_COLOR}─\n\
 ${BASE_COLOR}└${LIGHT_BLUE}─┤${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}├─\
 ${BASE_COLOR}─${NO_COLOUR}${ESC} ${PROMPT_CHAR} "

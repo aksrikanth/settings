@@ -54,12 +54,6 @@ let python_highlight_all = 1
 
 let mapleader = ','
 
-let extfile = expand("<sfile>:h") . "/.local_vimrc"
-
-if filereadable(extfile)
-  source <sfile>:h/.local_vimrc
-endif
-
 " Tab navigation
 map <S-Left> gT
 map <S-Right> gt
@@ -78,6 +72,7 @@ cabbr l lib/**
 cabbr m app/models/**
 cabbr s app/assets/stylesheets/**
 cabbr t spec/**
+cabbr ta spec/mailers/**
 cabbr tc spec/controllers/**
 cabbr tf spec/support/factories/**
 cabbr tg spec/migrators/**
@@ -87,6 +82,16 @@ cabbr tm spec/models/**
 cabbr ts spec/support/**
 cabbr tv spec/views/**
 cabbr v app/views/**
+
+" Close all active buffers
+function! Clear()
+  1,100bd
+endfunction
+
+let extfile = expand("<sfile>:h") . "/.local_vimrc"
+if filereadable(extfile)
+  source <sfile>:h/.local_vimrc
+endif
 
 call pathogen#infect()
 

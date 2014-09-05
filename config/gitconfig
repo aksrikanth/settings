@@ -28,13 +28,8 @@
 [push]
   default = current
 [alias]
-  st = status
-  ci = commit
-  br = branch
-  co = checkout
-  df = diff
-  lg = log -p
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  ls = ls-files
-  ign = ls-files -o -i --exclude-standard
+  f = fetch --prune origin
+  ls = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit
+  r = rebase @{u}
+[http]
+  postBuffer = 524288000
