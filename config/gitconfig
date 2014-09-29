@@ -21,6 +21,7 @@
   threads = 0
 [diff]
   renamelimit = 0
+  renames = true
 [core]
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [branch]
@@ -30,6 +31,8 @@
 [alias]
   f = fetch --prune origin
   ls = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit
+  m = merge @{u}
+  new = log --author=Srikanth --no-merges @{u}..HEAD
   r = rebase @{u}
 [http]
   postBuffer = 524288000
