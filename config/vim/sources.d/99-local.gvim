@@ -1,0 +1,7 @@
+" Local configurations
+let extfile = expand("~") . "/.local_gvimrc"
+if filereadable(extfile)
+  execute "source ".fnameescape(extfile)
+endif
+
+" vim:filetype=vim

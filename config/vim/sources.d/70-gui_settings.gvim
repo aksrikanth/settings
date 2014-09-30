@@ -1,0 +1,21 @@
+" Use console dialogs instead of popups
+set guioptions+=c
+
+" Turn off useless toolbar
+set guioptions-=T
+
+" Turn off right-hand scroll-bar
+set guioptions-=r
+set guioptions-=R
+
+" Turn off left-hand scroll-bar
+set guioptions-=l
+set guioptions-=L
+
+" Turn off bottom scroll-bar
+set guioptions-=b
+
+" Turn off menu bar (toggle with CTRL+F11)
+set guioptions-=m
+
+" vim:filetype=vim

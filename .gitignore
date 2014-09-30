@@ -1,3 +1,4 @@
+**/.DS_Store
 bin/tig
 config/ssh/authorized_keys
 config/ssh/ssh_auth_sock
