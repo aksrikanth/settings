@@ -7,7 +7,6 @@ Plugin 'gmarik/vundle.vim'
 
 " Vim behavior
 Plugin 'aksrikanth/whitespace.vim'
-Plugin 'eagletmt/ghcmod-vim'
 Plugin 'ervandew/supertab'
 Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'jazzcore/ctrlp-cmatcher'
@@ -19,6 +18,7 @@ Plugin 'vim-scripts/zoomwin'
 
 " Filetype specific
 Plugin 'derekwyatt/vim-scala'
+Plugin 'eagletmt/ghcmod-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
