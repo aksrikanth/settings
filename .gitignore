@@ -6,3 +6,4 @@ config/ssh/id*
 config/ssh/known_hosts
 config/vim/.netrwhist
 config/vim/bundle/*
+!config/vim/bundle/.keep
