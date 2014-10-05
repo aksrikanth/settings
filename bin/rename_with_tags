@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]
+then
+  echo "Error: You must provide exactly two arguments"
+  echo "Usage:"
+  echo "    rename_with_tags <path/to/old/filename> <path/to/new/filename>"
+fi
+
+oldpath="$1"
+newpath="$2"
+
+oldname=`basename "$oldpath"`
+newname=`basename "$newpath"`
+
+for tag in `tags "$1"`
+do
+  cd "$tag"
+  rm "$oldname"
+  ln -sf "$( relpath $newpath $tag)"
+  cd -
+done
+
+mv "$oldpath" "$newpath"

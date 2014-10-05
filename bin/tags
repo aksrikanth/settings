@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+find -L . -samefile "$1" -print0 | xargs -0 -n1 dirname | grep -v 'all$' | sort

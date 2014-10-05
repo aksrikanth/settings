@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+for f in all/*
+do
+  if [ ! -f subs/$( echo `basename $f` | sed "s/\....$//" ).??? ]
+  then
+    basename $f
+  fi
+done

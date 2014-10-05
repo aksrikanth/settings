@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]
+then
+  echo "Error: Too few arguments."
+  echo "Usage:"
+  echo "    tag <path> <tag> [tags...]"
+fi
+
+file="$1"
+basename=`basename "$1"`
+shift
+
+while [ $# -ne 0 ]
+do
+  mkdir -p "$1"
+  cd "$1"
+  ln -s "$( relpath $file $1 )"
+  cd - >/dev/null
+  shift
+done
