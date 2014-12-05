@@ -2,19 +2,35 @@
 
 # Termwide prompt
 
-function prompt_command () {
-  username=$( whoami )
-  hostname=$( hostname -s )
-  directory="${PWD}"
-  let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
-  local_branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
-  if [ -z "$local_branch" ]
+function git_params () {
+  git_prefix=""
+  git_suffix=""
+  git_error=""
+  local_branch=""
+  counts=""
+  remote_branch=""
+  let branch_size=0
+  if [ -z "$( git rev-parse --is-inside-work-tree 2>/dev/null )" ]
   then
-    local_branch="∅"
-    counts=""
-    remote_branch=""
-    let branch_size=1
+    return  # Not a git directory
+  fi
+
+  if [ -f ~/.prompt_git_filter ] && [ -n "$( echo $PWD | egrep -f ~/.prompt_git_filter )" ]
+  then
+    return  # Treat it like not a git directory
+  fi
+
+  local_branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
+  git_prefix="─┤"
+  git_suffix="├─"
+
+  if [ -z "$( echo $local_branch | grep -v 'no branch, rebasing' )" ]
+  then
+    git_error="$local_branch"
+    local_branch=""
+    let branch_size=$( echo -n "$git_error" | wc -c | sed 's/^ *//; s/ *$//' )
   else
+    git_error=""
     remote_branch="$(
       git for-each-ref --format='%(upstream:short)' `git symbolic-ref -q HEAD` | sed 's@^\(.\).*/\(.*\)$@\1/\2@'
     )"
@@ -31,8 +47,18 @@ function prompt_command () {
       )
     fi
   fi
+  let branch_size=$branch_size+4
+}
 
-  let promptsize=$( echo -n "--()---()--"| wc -c | sed 's/^ *//; s/ *$//' )
+function prompt_command () {
+  username=$( whoami )
+  hostname=$( hostname -s )
+  directory="${PWD}"
+  let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
+
+  git_params
+
+  let promptsize=$( echo -n "---()--"| wc -c | sed 's/^ *//; s/ *$//' )
   let fillsize=${COLUMNS}-${promptsize}-${branch_size}-${directory_size}
   fill=''
 
@@ -74,8 +100,9 @@ function twttypow () {
   fi
 
   PS1="\n\
-${BASE_COLOR}┌${LIGHT_BLUE}─┤${GREEN}\${local_branch}${LIGHT_BLUE}\${counts}${GREEN}\${remote_branch}${LIGHT_BLUE}├─\
-${BASE_COLOR}─\${fill}${LIGHT_BLUE}─┤${GREEN}\${directory}${LIGHT_BLUE}├─${BASE_COLOR}─\n\
+${BASE_COLOR}┌${LIGHT_BLUE}\${git_prefix}\
+${LIGHT_RED}\${git_error}${GREEN}\${local_branch}${LIGHT_BLUE}\${counts}${GREEN}\${remote_branch}\
+${LIGHT_BLUE}\${git_suffix}${BASE_COLOR}─\${fill}${LIGHT_BLUE}─┤${GREEN}\${directory}${LIGHT_BLUE}├─${BASE_COLOR}─\n\
 ${BASE_COLOR}└${LIGHT_BLUE}─┤${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}├─\
 ${BASE_COLOR}─${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
 
