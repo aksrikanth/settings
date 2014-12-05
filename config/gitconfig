@@ -29,10 +29,14 @@
 [push]
   default = current
 [alias]
+  b = checkout -t @{u} -b # <branch name>
+  d = diff @{u}..HEAD
   f = fetch --prune origin
+  file-history = log --follow -p # <filename>
+  line-history = log -L # <line number>:<range>:filename
   ls = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit
   m = merge @{u}
-  new = log --author=Srikanth --no-merges @{u}..HEAD
+  new = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit --author=Srikanth --no-merges @{u}..HEAD
   r = rebase @{u}
 [http]
   postBuffer = 524288000
