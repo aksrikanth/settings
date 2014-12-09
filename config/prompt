@@ -2,7 +2,17 @@
 
 # Termwide prompt
 
-function git_params () {
+function __status () {
+  let local _code=$?
+  error_status=""
+  if [ $_code != 0 ]
+  then
+    error_status=" $_code"
+  fi
+  hostname=$( hostname -s )
+}
+
+function __git_params () {
   git_prefix=""
   git_suffix=""
   git_error=""
@@ -36,27 +46,39 @@ function git_params () {
     )"
     if [ -z "$remote_branch" ]
     then
-      counts=""
       let branch_size=$( echo -n "$local_branch" | wc -c | sed 's/^ *//; s/ *$//' )
     else
-      let head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
-      let remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
+      let local head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
+      let local remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
       counts=" $head_count:$remote_count "
       let branch_size=$(
-        echo -n "$local_branch $head_count:$remote_count $remote_branch" | wc -c | sed 's/^ *//; s/ *$//'
+        echo -n "$local_branch$counts$remote_branch" | wc -c | sed 's/^ *//; s/ *$//'
       )
     fi
   fi
   let branch_size=$branch_size+4
 }
 
-function prompt_command () {
-  username=$( whoami )
-  hostname=$( hostname -s )
+function __directory () {
   directory="${PWD}"
   let directory_size=$( echo -n "${directory}"| wc -c | sed 's/^ *//; s/ *$//' )
+}
 
-  git_params
+function __prompt_char () {
+  root_prompt_char=""
+  user_prompt_char="$"
+  if [ `whoami` = "root" ]
+  then
+    root_prompt_char="#"
+    user_prompt_char=""
+  fi
+}
+
+function prompt_command () {
+  __status
+  __git_params
+  __directory
+  __prompt_char
 
   let promptsize=$( echo -n "---()--"| wc -c | sed 's/^ *//; s/ *$//' )
   let fillsize=${COLUMNS}-${promptsize}-${branch_size}-${directory_size}
@@ -64,7 +86,7 @@ function prompt_command () {
 
   if [ "${fillsize}" -lt "0" ]
   then
-    let cut=$(( 3 - ${fillsize} ))
+    let local cut=3-${fillsize}
     directory="...$( echo -n $directory | sed "s/^.\{$cut\}//" )"
   else
     fill=$( printf "%0${fillsize}d" 0 | sed s/./─/g )
@@ -74,37 +96,26 @@ function prompt_command () {
 PROMPT_COMMAND=prompt_command
 
 function twttypow () {
-  local GRAY="\[\033[1;30m\]"
+  local GRAY="\[\033[0;30m\]"
+  local RED="\[\033[0;31m\]"
+  local GREEN="\[\033[0;32m\]"
+  local YELLOW="\[\033[0;33m\]"
+  local BLUE="\[\033[0;34m\]"
+  local CYAN="\[\033[0;36m\]"
   local LIGHT_GRAY="\[\033[0;37m\]"
-  local WHITE="\[\033[1;37m\]"
-  local NO_COLOUR="\[\033[0m\]"
-
-  local GREEN="\[\033[01;32m\]"
-  local LIGHT_BLUE="\[\033[1;34m\]"
-  local YELLOW="\[\033[1;33m\]"
   local LIGHT_RED="\[\033[1;31m\]"
+  local WHITE="\[\033[1;37m\]"
+  local NO_COLOR="\[\033[0m\]"
 
-  #local ESC="\033k\033\134"
-  local ESC=""
-  local BASE_COLOR=""
-  local PROMPT_CHAR=""
-  local BRANCH_COLOR=""
+  local BASE_COLOR=$LIGHT_GRAY
 
-  if [ `whoami` = "root" ]
-  then
-    BASE_COLOR=$LIGHT_RED
-    PROMPT_CHAR="#"
-  else
-    BASE_COLOR=$YELLOW
-    PROMPT_CHAR="$"
-  fi
-
-  PS1="\n\
-${BASE_COLOR}┌${LIGHT_BLUE}\${git_prefix}\
-${LIGHT_RED}\${git_error}${GREEN}\${local_branch}${LIGHT_BLUE}\${counts}${GREEN}\${remote_branch}\
-${LIGHT_BLUE}\${git_suffix}${BASE_COLOR}─\${fill}${LIGHT_BLUE}─┤${GREEN}\${directory}${LIGHT_BLUE}├─${BASE_COLOR}─\n\
-${BASE_COLOR}└${LIGHT_BLUE}─┤${BASE_COLOR}\${username}${LIGHT_BLUE}@${BASE_COLOR}\${hostname}${LIGHT_BLUE}├─\
-${BASE_COLOR}─${NO_COLOUR}${ESC} ${PROMPT_CHAR} "
+  PS1="\n${BASE_COLOR}┌\
+${BLUE}\${git_prefix}${LIGHT_RED}\${git_error}${CYAN}\${local_branch}\
+${BLUE}\${counts}${GREEN}\${remote_branch}${BLUE}\${git_suffix}\
+${BASE_COLOR}─\${fill}${BLUE}─┤${GREEN}\${directory}${BLUE}├─${BASE_COLOR}─\n\
+${BASE_COLOR}└${BLUE}─┤\
+${LIGHT_GRAY}\${hostname}${RED}\${error_status}${BLUE}├─${BASE_COLOR}─ \
+${YELLOW}\${user_prompt_char}${LIGHT_RED}\${root_prompt_char}${NO_COLOR} "
 
   PS2="   "
 }
