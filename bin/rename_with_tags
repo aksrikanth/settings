@@ -5,6 +5,7 @@ then
   echo "Error: You must provide exactly two arguments"
   echo "Usage:"
   echo "    rename_with_tags <path/to/old/filename> <path/to/new/filename>"
+  exit
 fi
 
 oldpath="$1"
