@@ -65,12 +65,14 @@ function __directory () {
 }
 
 function __prompt_char () {
-  root_prompt_char=""
-  user_prompt_char="$"
+  base_color=$'\e[0;37m'
+  prompt_color=$'\e[0;33m'
+  prompt_char="$"
   if [ `whoami` = "root" ]
   then
-    root_prompt_char="#"
-    user_prompt_char=""
+    prompt_char="#"
+    prompt_color=$'\e[0;31m'
+    base_color=$'\e[0;31m'
   fi
 }
 
@@ -96,6 +98,8 @@ function prompt_command () {
 PROMPT_COMMAND=prompt_command
 
 function twttypow () {
+  prompt_command
+
   local GRAY="\[\033[0;30m\]"
   local RED="\[\033[0;31m\]"
   local GREEN="\[\033[0;32m\]"
@@ -107,15 +111,13 @@ function twttypow () {
   local WHITE="\[\033[1;37m\]"
   local NO_COLOR="\[\033[0m\]"
 
-  local BASE_COLOR=$LIGHT_GRAY
-
-  PS1="\n${BASE_COLOR}┌\
+  PS1="\n\[\${base_color}\]┌\
 ${BLUE}\${git_prefix}${LIGHT_RED}\${git_error}${CYAN}\${local_branch}\
-${BLUE}\${counts}${GREEN}\${remote_branch}${BLUE}\${git_suffix}\
-${BASE_COLOR}─\${fill}${BLUE}─┤${GREEN}\${directory}${BLUE}├─${BASE_COLOR}─\n\
-${BASE_COLOR}└${BLUE}─┤\
-${LIGHT_GRAY}\${hostname}${RED}\${error_status}${BLUE}├─${BASE_COLOR}─ \
-${YELLOW}\${user_prompt_char}${LIGHT_RED}\${root_prompt_char}${NO_COLOR} "
+${BLUE}\${counts}${GRAY}\${remote_branch}${BLUE}\${git_suffix}\
+\[\${base_color}\]─\${fill}${BLUE}─┤${GREEN}\${directory}${BLUE}├─\[\${base_color}\]─\n\
+\[\${base_color}\]└${BLUE}─┤\
+${LIGHT_GRAY}\${hostname}${RED}\${error_status}${BLUE}├─\[\${base_color}\]─ \
+\[\${prompt_color}\]\${prompt_char}${NO_COLOR} "
 
   PS2="   "
 }

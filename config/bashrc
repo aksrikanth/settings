@@ -41,6 +41,3 @@ fi
 
 # Ensure that local settings override the defaults
 [ -f ~/.local_bashrc ] && . ~/.local_bashrc
-
-# Git completion
-[ -f ~/settings/bin/git-completion.sh ] && . ~/settings/bin/git-completion.sh
