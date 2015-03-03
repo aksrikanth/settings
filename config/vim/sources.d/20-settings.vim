@@ -1,3 +1,7 @@
+if &shell =~# 'fish$'
+  set shell=/bin/bash
+endif
+
 set encoding=utf-8
 
 set showcmd
