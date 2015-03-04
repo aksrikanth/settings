@@ -1,16 +1,16 @@
 [ -f /etc/bashrc ] && . /etc/bashrc
 [ -f /etc/profile ] && . /etc/profile
 
+# Ensure that files are sorted case sensitive
 export LC_COLLATE=C
-export KDEDIR=/usr
-export QTDIR=/usr/share/qt3
 export EDITOR=vim
+
+export PATH=$PATH:$HOME/settings/bin:$HOME/.local_bin
+export CDPATH=.:~:~/work/projects
 
 if [ "$COLORTERM" == "gnome-terminal" ]; then
   export TERM=xterm-256color
 fi
-
-export PATH=$PATH:$HOME/settings/bin:$HOME/.local_bin
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -26,13 +26,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# This line was appended by KDE
-# Make sure our customised gtkrc file is loaded.
-export GTK2_RC_FILES=$HOME/.gtkrc-2.0
-
-. ~/.alias
-[ -f ~/.local_alias ] && . ~/.local_alias
-
 if [ "x$TERM" != "x" ]
 then
   . ~/.prompt
@@ -41,3 +34,10 @@ fi
 
 # Ensure that local settings override the defaults
 [ -f ~/.local_bashrc ] && . ~/.local_bashrc
+
+# Set aliases and local overrides
+. ~/.alias
+[ -f ~/.local_alias ] && . ~/.local_alias
+
+# Git completion
+[ -f ~/settings/bin/git-completion.sh ] && . ~/settings/bin/git-completion.sh

@@ -1,0 +1,10 @@
+* text=auto
+
+*.rb diff=ruby
+*.h diff=cpp
+*.c diff=cpp
+*.cc diff=cpp
+*.cpp diff=cpp
+*.tex diff=tex
+*.bib diff=bibtex
+*.py diff=python
