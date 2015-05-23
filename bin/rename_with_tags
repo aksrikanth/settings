@@ -22,4 +22,14 @@ do
   cd -
 done
 
+base="$( echo $oldname | 's/\..*//' )"
+sub_ext="$( echo subs/$oldname | sed 's/^.*\.//' )"
+
+if [ -f "subs/${oldpath%%.???}".* ]
+then
+  oldsub="subs/${oldpath%%.???}".*
+  newsub-
+  mv "$sub" "$( echo $sub | )"
+fi
+
 mv "$oldpath" "$newpath"
