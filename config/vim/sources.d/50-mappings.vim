@@ -10,5 +10,5 @@ imap <S-Right> <Esc>gt
 nmap <leader>c <plug>CommentaryLine
 vmap <leader>c <plug>Commentary
 nmap <leader>t :TagbarToggle<CR>
-nmap <leader>x :call Clear()<CR>
+nmap <leader>x :%bd<CR>
 nmap <leader>s :SemanticHighlightToggle<CR>

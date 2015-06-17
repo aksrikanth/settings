@@ -20,12 +20,13 @@ Plugin 'vim-scripts/zoomwin'
 
 " Filetype specific
 Plugin 'derekwyatt/vim-scala'
-Plugin 'shougo/vimproc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'enomsg/vim-haskellConcealPlus'
+Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
+Plugin 'shougo/vimproc'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
 
