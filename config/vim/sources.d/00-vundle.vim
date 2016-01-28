@@ -3,7 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle.vim'
+Plugin 'vundlevim/vundle.vim'
 
 " Vim behavior
 Plugin 'aksrikanth/whitespace.vim'
