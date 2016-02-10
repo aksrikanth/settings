@@ -33,11 +33,19 @@ set modeline
 set wildmenu
 
 set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:─,diff:─
-set listchars=eol:⟜,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
+set listchars=eol:⌁,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
 set list
 set foldmethod=marker
 set background=dark
 set colorcolumn=81
+
+set undofile
+set undodir=$HOME/tmp/undo
+set undolevels=1000
+set undoreload=10000
+
+set visualbell t_vb=
+set belloff=cursor,esc
 
 filetype indent on
 filetype plugin on

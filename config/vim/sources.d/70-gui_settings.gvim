@@ -1,3 +1,12 @@
+" Set the guifont
+if has("gui_gtk2")
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 16
+elseif has("gui_macvim")
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
+elseif has("gui_win32")
+  set guifont=Consolas:h11:cANSI
+endif
+
 " Use console dialogs instead of popups
 set guioptions+=c
 
@@ -18,4 +27,6 @@ set guioptions-=b
 " Turn off menu bar (toggle with CTRL+F11)
 set guioptions-=m
 
+" Turn off visual bell
+set visualbell t_vb=
 " vim:filetype=vim

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function __system () {
+  __status
+  local status=$result__
+  __hostname
+  local hostname=$result__
+  if [ -z "$status" ]
+  then
+    system="${blue__}─┤${no_color__}$hostname${blue__}├─${no_color__}"
+  else
+    system="${blue__}─┤${no_color__}$hostname $status${blue__}├─${no_color__}"
+  fi
+}

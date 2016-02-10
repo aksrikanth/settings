@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+function __hostname () {
+  unadorned_result__=$( hostname -s )
+  result__="${light_gray__}${unadorned_result__}${no_color__}"
+}

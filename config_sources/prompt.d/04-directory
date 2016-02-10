@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+function __directory () {
+  unadorned_result__="${PWD}"
+  result__="${green__}${unadorned_result__}${no_color__}"
+}

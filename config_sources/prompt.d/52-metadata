@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function __metadata () {
+  __git
+  if [ -z "$unadorned_result__" ]
+  then
+    metadata_size=0
+    metadata=""
+  else
+    let metadata_size=$( echo -n "$unadorned_result__" | wc -c | sed 's/^ *//; s/ *$//' )+4
+    metadata="${blue__}─┤${no_color__}$result__${blue__}├─${no_color__}"
+  fi
+}

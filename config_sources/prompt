@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Inspired by http://www.gilesorr.com/bashprompt/prompts/twttypow.html
+
+for f in ~/settings/config_sources/prompt.d/*
+do
+  source $f
+done
+
+function prompt_command () {
+  __system
+  __metadata
+  __location
+
+  __prompt_char
+  prompt_char=$result__
+}
+
+function prompt () {
+  __colors
+
+  PROMPT_COMMAND=prompt_command
+  PS1="\n\${prompt_color__}┌\${metadata}\${prompt_color__}─\${fill}\${location}\${prompt_color__}─\n└\${system}\${prompt_color__}─ \${prompt_char} "
+  PS2="   "
+}

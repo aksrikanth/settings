@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function __status () {
+  let local code=$?
+  unadorned_result__=""
+  result__=""
+  if [ $code != 0 ]
+  then
+    unadorned_result__="$code"
+    result__="${red__}$code${no_color__}"
+  fi
+}

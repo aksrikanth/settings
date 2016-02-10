@@ -28,8 +28,8 @@ shopt -s checkwinsize
 
 if [ "x$TERM" != "x" ]
 then
-  . ~/.prompt
-  twttypow
+  . ~/settings/config_sources/prompt
+  prompt
 fi
 
 function say() {

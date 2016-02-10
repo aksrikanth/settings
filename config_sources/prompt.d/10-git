@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+function __git () {
+  result__=""
+  unadorned_result__=""
+  if [ -z "$( git rev-parse --is-inside-work-tree 2>/dev/null )" ]
+  then
+    return  # Not a git directory
+  fi
+
+  if [ -f ~/.prompt_git_filter ] && [ -n "$( echo $PWD | egrep -f ~/.prompt_git_filter )" ]
+  then
+    return  # Treat it like not a git directory
+  fi
+
+  local local_branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
+  if [ -z "$( echo $local_branch | grep -v 'no branch, rebasing' )" ]
+  then
+    unadorned_result__="$local_branch"
+    result__="${light_red__}$unadorned_result__${no_color__}"
+  else
+    local remote_branch="$(
+      git for-each-ref --format='%(upstream:short)' `git symbolic-ref -q HEAD` | sed 's@^\(.\).*/\(.*\)$@\1/\2@'
+    )"
+    if [ -z "$remote_branch" ]
+    then
+      unadorned_result__="$local_branch"
+      result__="${cyan__}$unadorned_result__${no_color__}"
+    else
+      let local head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
+      let local remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
+      unadorned_result__="$local_branch $head_count:$remote_count $remote_branch"
+      result__="${cyan__}$local_branch ${blue__}$head_count:$remote_count ${gray__}$remote_branch"
+    fi
+  fi
+}
