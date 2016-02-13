@@ -1,6 +1,38 @@
 #!/usr/bin/env bash
 
 function __directory () {
-  unadorned_result__="${PWD}"
-  result__="${green__}${unadorned_result__}${no_color__}"
+  unadorned_result__=""
+  result__=""
+  if [ -z "$1" ]
+  then
+    return
+  fi
+
+  let local available_size=$1
+  local directory="${PWD}"
+  if [ "$available_size" -ge "${#directory}" ]
+  then
+    unadorned_result__="$directory"
+  else
+    local compact=$(echo $directory | sed 's@[^/][^/]*/@./@g')
+    if [ "$available_size" -ge "${#compact}" ]
+    then
+      until [ "$available_size" -ge "${#directory}" ]
+      do
+        directory=$( echo -n "$directory" | sed 's@\([^/]\)[^/][^/]*/@\1/@' )
+      done
+      unadorned_result__=$directory
+    else
+      local base=$( basename $directory )
+      if [ "$available_size" -ge "${#base}" ]
+      then
+        unadorned_result__=$base
+      fi
+    fi
+  fi
+
+  if [ -n "$unadorned_result__" ]
+  then
+    result__="${green__}${unadorned_result__}${no_color__}"
+  fi
 }

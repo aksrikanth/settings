@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 
 function __location () {
-  __directory
-  local temp_location=$result__
-  let local location_size=$( echo -n "$unadorned_result__" | wc -c | sed 's/^ *//; s/ *$//' )+4
-  let local promptsize=3
-  let local fillsize=${COLUMNS}-${promptsize}-${metadata_size}-${location_size}
   fill=""
-  if [ "$fillsize" -lt "0" ]
+  location=""
+  let local available_size=${COLUMNS}-${metadata_size}-7  # sizeof(---||--)
+  __directory $available_size
+  local temp_location=$unadorned_result__
+  if [ -z "$unadorned_result__" ]  # Not enough space for location
   then
-    let local cut=3-1-${fillsize}
-    temp_location="...$( echo -n $temp_location | sed "s@/.\{$cut\}@@" )"
-  else
-    fill=$( printf "%0${fillsize}d" 0 | sed s/./─/g )
+    let local fill_size=${available_size}+4
+    fill=$( printf "%0${fill_size}d" 0 | sed s/./─/g )
+    return
   fi
-  location="${blue__}─┤${no_color__}$temp_location${blue__}├─${no_color__}"
+
+  if [ "$available_size" -ge "${#temp_location}" ]
+  then
+    if [ "$available_size" -gt "${#temp_location}" ]
+    then
+      let local fill_size=${available_size}-${#temp_location}
+      fill=$( printf "%0${fill_size}d" 0 | sed s/./─/g )
+    fi
+
+    location="${blue__}─┤${no_color__}$result__${blue__}├─${no_color__}"
+  fi
 }
