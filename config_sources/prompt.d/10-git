@@ -30,7 +30,7 @@ function __git () {
       let local head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
       let local remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
       unadorned_result__="$local_branch $head_count:$remote_count $remote_branch"
-      result__="${cyan__}$local_branch ${blue__}$head_count:$remote_count ${gray__}$remote_branch"
+      result__="${cyan__}$local_branch ${blue__}$head_count:$remote_count ${gray__}$remote_branch${no_color__}"
     fi
   fi
 }

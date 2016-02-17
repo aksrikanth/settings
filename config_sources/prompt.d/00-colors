@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 function __colors () {
-  gray__=$'\001\e[0;30m\002'
+  no_color__=$'\001\e[0m\002'
+  black__=$'\001\e[0;30m\002'
   red__=$'\001\e[0;31m\002'
   green__=$'\001\e[0;32m\002'
   yellow__=$'\001\e[0;33m\002'
   blue__=$'\001\e[0;34m\002'
   cyan__=$'\001\e[0;36m\002'
   light_gray__=$'\001\e[0;37m\002'
+  gray__=$'\001\e[1;30m\002'
   light_red__=$'\001\e[1;31m\002'
   white__=$'\001\e[1;37m\002'
-  no_color__=$'\001\e[0m\002'
 }

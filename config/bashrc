@@ -1,55 +1,6 @@
-[ -f /etc/bashrc ] && . /etc/bashrc
-[ -f /etc/profile ] && . /etc/profile
+for f in ~/settings/config_sources/bashrc.d/*
+do
+  source $f
+done
 
-# Ensure that files are sorted case sensitive
-export LC_COLLATE=C
-export EDITOR=vim
-
-export PATH=$PATH:$HOME/settings/bin:$HOME/.local_bin
-export CDPATH=.:~:~/work/projects
-
-if [ "$COLORTERM" == "gnome-terminal" ]; then
-  export TERM=xterm-256color
-fi
-
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-
-export CDPATH=$CDPATH:~/work/projects
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-
-if [ "x$TERM" != "x" ]
-then
-  . ~/settings/config_sources/prompt
-  prompt
-fi
-
-function say() {
-  if [[ "${1}" =~ -[a-z]{2} ]]
-  then
-    local lang=${1#-}
-    local text="${*#$1}"
-  else
-    local lang=${LANG%_*}
-    local text="$*"
-  fi
-  mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null
-}
-
-# Ensure that local settings override the defaults
-[ -f ~/.local_bashrc ] && . ~/.local_bashrc
-
-# Set aliases and local overrides
-. ~/.alias
-[ -f ~/.local_alias ] && . ~/.local_alias
-
-# Git completion
-[ -f ~/settings/bin/git-completion.sh ] && . ~/settings/bin/git-completion.sh
+prompt

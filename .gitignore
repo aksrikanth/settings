@@ -1,5 +1,7 @@
 **/.DS_Store
 bin/tig
+config_local/*
+!config_local/.keep
 config/ssh/authorized_keys
 config/ssh/ssh_auth_sock
 config/ssh/id*

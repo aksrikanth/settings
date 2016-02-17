@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for f in ~/settings/config_local/bashrc.d/*
+do
+  source $f
+done

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Ensure that files are sorted case sensitive
+export LC_COLLATE=C
+export EDITOR=vim
+
+export PATH=$PATH:$HOME/settings/bin:$HOME/settings/config_local/bin
+export CDPATH=.:~:~/work/projects
+
+if [ "$COLORTERM" == "gnome-terminal" ]; then
+  export TERM=xterm-256color
+fi
+
+# See bash(1) for more options
+export HISTCONTROL=ignoreboth
+
+export CDPATH=$CDPATH:~/work/projects
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
