@@ -1,1 +1,1 @@
-runtime! sources.d/*.gvim
+runtime! gvimrc.d/*.vim

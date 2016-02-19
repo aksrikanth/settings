@@ -33,7 +33,7 @@ set modeline
 set wildmenu
 
 set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:─,diff:─
-set listchars=eol:⌁,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
+set listchars=eol:⎸,tab:⊡⋅,extends:▻,precedes:◅,nbsp:◻
 set list
 set foldmethod=marker
 set background=dark
