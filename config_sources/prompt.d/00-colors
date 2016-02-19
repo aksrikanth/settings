@@ -13,3 +13,12 @@ function __colors () {
   light_red__=$'\001\e[1;31m\002'
   white__=$'\001\e[1;37m\002'
 }
+
+function __draw_chars () {
+  top_left_char__='┏'
+  bottom_left_char__='┗'
+  fill_char__='━'
+  end_char__='─'
+  data_left_char__='━┥'
+  data_right_char__='┝━'
+}

@@ -7,8 +7,8 @@ function __system () {
   local hostname=$result__
   if [ -z "$status" ]
   then
-    system="${blue__}─┤${no_color__}$hostname${blue__}├─${no_color__}"
+    system="${blue__}${data_left_char__}${no_color__}$hostname${blue__}${data_right_char__}${no_color__}"
   else
-    system="${blue__}─┤${no_color__}$hostname $status${blue__}├─${no_color__}"
+    system="${blue__}${data_left_char__}${no_color__}$hostname $status${blue__}${data_right_char__}${no_color__}"
   fi
 }

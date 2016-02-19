@@ -17,8 +17,14 @@ function prompt_command () {
 
 function prompt () {
   __colors
+  __draw_chars
 
   PROMPT_COMMAND=prompt_command
-  PS1="\n\${prompt_color__}┌\${metadata}\${prompt_color__}─\${fill}\${location}\${prompt_color__}─\n└\${system}\${prompt_color__}─ \${prompt_char} "
+  PS1="\n\
+\${prompt_color__}\${top_left_char__}\${metadata}\
+\${prompt_color__}\${fill_char__}\${fill}\${location}\
+\${prompt_color__}\${end_char__}\n\
+\${bottom_left_char__}\${system}\
+\${prompt_color__}\${end_char__} \${prompt_char} "
   PS2="   "
 }

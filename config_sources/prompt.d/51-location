@@ -9,7 +9,7 @@ function __location () {
   if [ -z "$unadorned_result__" ]  # Not enough space for location
   then
     let local fill_size=${available_size}+4
-    fill=$( printf "%0${fill_size}d" 0 | sed s/./─/g )
+    fill=$( printf "%0${fill_size}d" 0 | sed s/./${fill_char__}/g )
     return
   fi
 
@@ -18,9 +18,9 @@ function __location () {
     if [ "$available_size" -gt "${#temp_location}" ]
     then
       let local fill_size=${available_size}-${#temp_location}
-      fill=$( printf "%0${fill_size}d" 0 | sed s/./─/g )
+      fill=$( printf "%0${fill_size}d" 0 | sed s/./${fill_char__}/g )
     fi
 
-    location="${blue__}─┤${no_color__}$result__${blue__}├─${no_color__}"
+    location="${blue__}${data_left_char__}${no_color__}$result__${blue__}${data_right_char__}${no_color__}"
   fi
 }
