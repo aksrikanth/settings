@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-for f in ~/settings/config_local/bashrc.d/*
-do
-  source $f
-done
+if [ -d ~/settings/config_local/bashrc.d -a -n "$( shopt -s nullglob; echo "~/settings/config_local/bashrc.d/*" )" ]
+then
+  for f in ~/settings/config_local/bashrc.d/*
+  do
+    source $f
+  done
+fi

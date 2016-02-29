@@ -38,5 +38,3 @@
   m = merge @{u}
   new = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit --author=Srikanth --no-merges @{u}..HEAD
   r = rebase @{u}
-[http]
-  postBuffer = 524288000
