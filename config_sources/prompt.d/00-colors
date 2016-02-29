@@ -10,15 +10,19 @@ function __colors () {
   cyan__=$'\001\e[0;36m\002'
   light_gray__=$'\001\e[0;37m\002'
   gray__=$'\001\e[1;30m\002'
-  light_red__=$'\001\e[1;31m\002'
+  bold_red__=$'\001\e[1;31m\002'
+  bold_green__=$'\001\e[1;32m\002'
+  bold_yellow__=$'\001\e[1;33m\002'
+  bold_blue__=$'\001\e[1;34m\002'
+  bold_cyan__=$'\001\e[1;36m\002'
   white__=$'\001\e[1;37m\002'
 }
 
 function __draw_chars () {
-  top_left_char__='┏'
-  bottom_left_char__='┗'
-  fill_char__='━'
+  top_left_char__='╭'
+  bottom_left_char__='╰'
+  fill_char__='─'
   end_char__='─'
-  data_left_char__='━┥'
-  data_right_char__='┝━'
+  data_left_char__='─┤'
+  data_right_char__='├─'
 }

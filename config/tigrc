@@ -1,1 +1,3 @@
+set vertical-split = yes
+
 bind generic + !git commit --amend

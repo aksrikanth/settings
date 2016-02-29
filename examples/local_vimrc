@@ -1,12 +1,3 @@
-set expandtab
-set ts=2
-set sw=2
-
-set guifont=Monaco\ 9
-set colorcolumn=120
-
-map <F2> :vsplit:vsplit
-
 cabbr a app/mailers/**
 cabbr c app/controllers/**
 cabbr f config/**

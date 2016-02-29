@@ -12,16 +12,21 @@
   frag = magenta bold
   old = red bold
   new = green bold
-	whitespace = red reverse
+  whitespace = red reverse
 [color "status"]
   added = green
   changed = cyan
   untracked = red
 [pack]
   threads = 0
+[merge]
+  tool = vimdiff
 [diff]
   renamelimit = 0
   renames = true
+  tool = vimdiff
+[difftool]
+  prompt = false
 [core]
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [branch]
