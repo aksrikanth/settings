@@ -6,6 +6,14 @@ do
   source $f
 done
 
+if [ -d ~/settings/config_local/prompt.d -a -n "$( shopt -s nullglob; echo "~/settings/config_local/prompt.d/*" )" ]
+then
+  for f in ~/settings/config_local/prompt.d/*
+  do
+    source $f
+  done
+fi
+
 function prompt_command () {
   __system
   __metadata
