@@ -1,4 +1,5 @@
 set nocompatible
 
 set runtimepath+=~/settings/config_sources/
+set runtimepath+=~/settings/config_local/
 runtime! vimrc.d/*.vim
