@@ -15,12 +15,9 @@ then
 fi
 
 function prompt_command () {
-  __system
   __metadata
   __location
-
-  __prompt_char
-  prompt_char=$result__
+  __fill
 }
 
 function prompt () {
@@ -28,11 +25,6 @@ function prompt () {
   __draw_chars
 
   PROMPT_COMMAND=prompt_command
-  PS1="\n\
-\${prompt_color__}\${top_left_char__}\${metadata}\
-\${prompt_color__}\${fill_char__}\${fill}\${location}\
-\${prompt_color__}\${end_char__}\n\
-\${bottom_left_char__}\${system}\
-\${prompt_color__}\${end_char__} \${prompt_char} "
-  PS2="   "
+  PS1="\n\${metadata}\${fill}\${location}\n"
+  PS2=""
 }

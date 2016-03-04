@@ -19,10 +19,7 @@ function __colors () {
 }
 
 function __draw_chars () {
-  top_left_char__='╭'
-  bottom_left_char__='╰'
   fill_char__='─'
-  end_char__='─'
-  data_left_char__='─┤'
-  data_right_char__='├─'
+  data_start_char__='─┤'
+  data_end_char__='├─'
 }

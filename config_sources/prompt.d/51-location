@@ -1,26 +1,30 @@
 #!/usr/bin/env bash
 
 function __location () {
-  fill=""
+  unadorned_location=""
   location=""
-  let local available_size=${COLUMNS}-${metadata_size}-7  # sizeof(---||--)
-  __directory $available_size
-  local temp_location=$unadorned_result__
-  if [ -z "$unadorned_result__" ]  # Not enough space for location
+
+  __hostname
+  local hostname=$result__
+  local unadorned_hostname=$unadorned_result__
+
+  let local available_size=$COLUMNS-${#unadorned_metadata}-${#data_start_char__}-${#unadorned_hostname}-1  # reserve at least one character for fill
+  if [ "$available_size" -lt 0 ]
   then
-    let local fill_size=${available_size}+4
-    fill=$( printf "%0${fill_size}d" 0 | sed s/./${fill_char__}/g )
-    return
+    return  # Not enough space for hostname
   fi
 
-  if [ "$available_size" -ge "${#temp_location}" ]
-  then
-    if [ "$available_size" -gt "${#temp_location}" ]
-    then
-      let local fill_size=${available_size}-${#temp_location}
-      fill=$( printf "%0${fill_size}d" 0 | sed s/./${fill_char__}/g )
-    fi
+  let local available_size=$COLUMNS-${#unadorned_metadata}-${#data_start_char__}-${#unadorned_hostname}-2
+  __directory $available_size
+  local directory=$result__
+  local unadorned_directory=$unadorned_result__
 
-    location="${blue__}${data_left_char__}${no_color__}$result__${blue__}${data_right_char__}${no_color__}"
+  if [ -z "$directory" ]
+  then
+    unadorned_location="${data_start_char__}$unadorned_hostname"
+    location="${blue__}${data_start_char__}$hostname${no_color__}"
+  else
+    unadorned_location="${data_start_char__}$unadorned_hostname:$unadorned_directory"
+    location="${blue__}${data_start_char__}$hostname:$directory${no_color__}"
   fi
 }

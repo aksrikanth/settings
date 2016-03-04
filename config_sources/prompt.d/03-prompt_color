@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function __prompt_color () {
+  unadorned_result__=""
+  result__="${gray__}"
+  if [ `whoami` = "root" ]
+  then
+    result__="${red__}"
+  fi
+}

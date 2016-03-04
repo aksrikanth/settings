@@ -1,12 +1,28 @@
 #!/usr/bin/env bash
 
 function __metadata () {
-  let metadata_size=0
-  metadata=""
+  __status
+  local status=$result__
+  local unadorned_status=$unadorned_result__
+
   __git
-  if [ -n "$unadorned_result__" ]
+  local revision=$result__
+  local unadorned_revision=$unadorned_result__
+
+  if [ -n "$revision" -a -n "$status" ]
   then
-    let metadata_size=$( echo -n "$unadorned_result__" | wc -c | sed 's/^ *//; s/ *$//' )+4
-    metadata="${blue__}${data_left_char__}${no_color__}$result__${blue__}${data_right_char__}${no_color__}"
+    unadorned_metadata="$unadorned_revision $unadorned_status$data_end_char__"
+    metadata="$revision $status$blue__$data_end_char__$no_color__"
+  elif [ -n "$revision" ]
+  then
+    unadorned_metadata="$unadorned_revision$data_end_char__"
+    metadata="$revision$blue__$data_end_char__$no_color__"
+  elif [ -n "$status" ]
+  then
+    unadorned_metadata="$unadorned_status$data_end_char__"
+    metadata="$status$blue__$data_end_char__$no_color__"
+  else
+    unadorned_metadata=""
+    metadata=""
   fi
 }
