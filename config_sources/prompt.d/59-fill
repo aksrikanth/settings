@@ -8,6 +8,6 @@ function __fill () {
   then
     local unadorned_fill=$( printf "%0${fill_size}d" 0 | sed s/./${fill_char__}/g )
     __prompt_color
-    fill="${result__}${unadorned_fill}${no_color__}"
+    fill="$result__$unadorned_fill$no_color__"
   fi
 }

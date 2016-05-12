@@ -2,9 +2,9 @@
 
 function __prompt_color () {
   unadorned_result__=""
-  result__="${gray__}"
+  result__="$base_normal__"
   if [ `whoami` = "root" ]
   then
-    result__="${red__}"
+    result__="$base_root__"
   fi
 }

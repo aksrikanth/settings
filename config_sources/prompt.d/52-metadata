@@ -12,15 +12,15 @@ function __metadata () {
   if [ -n "$revision" -a -n "$status" ]
   then
     unadorned_metadata="$unadorned_revision $unadorned_status$data_end_char__"
-    metadata="$revision $status$blue__$data_end_char__$no_color__"
+    metadata="$revision $status$highlight__$data_end_char__$no_color__"
   elif [ -n "$revision" ]
   then
     unadorned_metadata="$unadorned_revision$data_end_char__"
-    metadata="$revision$blue__$data_end_char__$no_color__"
+    metadata="$revision$highlight__$data_end_char__$no_color__"
   elif [ -n "$status" ]
   then
     unadorned_metadata="$unadorned_status$data_end_char__"
-    metadata="$status$blue__$data_end_char__$no_color__"
+    metadata="$status$highlight__$data_end_char__$no_color__"
   else
     unadorned_metadata=""
     metadata=""

@@ -33,6 +33,6 @@ function __directory () {
 
   if [ -n "$unadorned_result__" ]
   then
-    result__="${green__}${unadorned_result__}${no_color__}"
+    result__="$location_fine__$unadorned_result__$no_color__"
   fi
 }

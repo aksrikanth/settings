@@ -17,7 +17,7 @@ function __git () {
   if [ -z "$( echo $local_branch | grep -v 'no branch, rebasing' )" ]
   then
     unadorned_result__="$local_branch"
-    result__="${light_red__}$unadorned_result__${no_color__}"
+    result__="$context_error__$unadorned_result__$no_color__"
   else
     local remote_branch="$(
       git for-each-ref --format='%(upstream:short)' `git symbolic-ref -q HEAD` | sed 's@^\(.\).*/\(.*\)$@\1/\2@'
@@ -25,12 +25,12 @@ function __git () {
     if [ -z "$remote_branch" ]
     then
       unadorned_result__="$local_branch"
-      result__="${cyan__}$unadorned_result__${no_color__}"
+      result__="$context_local__$unadorned_result__$no_color__"
     else
       let local head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
       let local remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
       unadorned_result__="$local_branch $head_count:$remote_count $remote_branch"
-      result__="${cyan__}$local_branch ${blue__}$head_count:$remote_count ${gray__}$remote_branch${no_color__}"
+      result__="$context_local__$local_branch $context_meta__$head_count:$remote_count $context_remote__$remote_branch$no_color__"
     fi
   fi
 }

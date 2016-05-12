@@ -15,6 +15,7 @@ then
 fi
 
 function prompt_command () {
+  __theme
   __metadata
   __location
   __fill

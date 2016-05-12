@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function __theme () {
+  base_normal__="$gray__"
+  base_root__="$red__"
+
+  highlight__="$blue__"
+  error__="$red__"
+  location_coarse__="$light_gray__"
+  location_fine__="$green__"
+  context_local__="$cyan__"
+  context_remote__="$gray__"
+  context_meta__="$blue__"
+  context_error__="$light_red__"
+}

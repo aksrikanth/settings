@@ -22,9 +22,9 @@ function __location () {
   if [ -z "$directory" ]
   then
     unadorned_location="${data_start_char__}$unadorned_hostname"
-    location="${blue__}${data_start_char__}$hostname${no_color__}"
+    location="$highlight__$data_start_char__$no_color__$hostname$no_color__"
   else
     unadorned_location="${data_start_char__}$unadorned_hostname:$unadorned_directory"
-    location="${blue__}${data_start_char__}$hostname:$directory${no_color__}"
+    location="$highlight__$data_start_char__$no_color__$hostname:$directory$no_color__"
   fi
 }
