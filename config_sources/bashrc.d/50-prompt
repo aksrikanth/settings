@@ -6,9 +6,9 @@ do
   source $f
 done
 
-if [ -d ~/settings/config_local/prompt.d -a -n "$( shopt -s nullglob; echo "~/settings/config_local/prompt.d/*" )" ]
+if [ -d ~/settings/local_sources/prompt.d -a -n "$( shopt -s nullglob; echo "~/settings/local_sources/prompt.d/*" )" ]
 then
-  for f in ~/settings/config_local/prompt.d/*
+  for f in ~/settings/local_sources/prompt.d/*
   do
     source $f
   done

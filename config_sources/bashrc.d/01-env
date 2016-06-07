@@ -4,7 +4,7 @@
 export LC_COLLATE=C
 export EDITOR=vim
 
-export PATH=$PATH:$HOME/settings/bin:$HOME/settings/config_local/bin
+export PATH=$PATH:$HOME/settings/bin:$HOME/settings/local_sources/bin
 
 if [ "$COLORTERM" == "gnome-terminal" ]; then
   export TERM=xterm-256color
