@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -d ~/settings/local_sources/bashrc.d -a -n "$( shopt -s nullglob; echo "~/settings/local_sources/bashrc.d/*" )" ]
+if [ -d ~/settings/local_sources/bashrc.d -a -n "$( shopt -s nullglob; echo ~/settings/local_sources/bashrc.d/* )" ]
 then
   for f in ~/settings/local_sources/bashrc.d/*
   do

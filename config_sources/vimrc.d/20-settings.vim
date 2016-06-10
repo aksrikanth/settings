@@ -13,7 +13,9 @@ set smartindent
 set linebreak
 set backspace=indent,eol,start
 set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 
 set printoptions=paper:letter
 set ruler
