@@ -1,10 +1,32 @@
 #!/usr/bin/env bash
 
-# Ensure that files are sorted case sensitive
-export LC_COLLATE=C
 export EDITOR=vim
 
-export PATH=$PATH:$HOME/settings/bin:$HOME/settings/local_sources/bin
+# Ensure that files are sorted case sensitive
+export LC_COLLATE=C
+
+# Modify PATHs without introducing duplicates
+path_append() {
+  if [ -d "$2" ] && [[ ":${!1}:" != *":$2:"* ]]; then
+    "$1"="${!1}:$2"
+  fi
+}
+
+path_prepend() {
+  if [ -d "$2" ] && [[ ":${!1}:" != *":$2:"* ]]; then
+    "$1"="$2:${!1}"
+  fi
+}
+
+path_append "PATH" "$HOME/settings/bin:$HOME/settings/local_sources/bin"
+path_append "CDPATH" "~:~/work/projects"
+
+# Prepend cd to directory names automatically
+shopt -s autocd
+# Correct spelling errors during tab-completion
+shopt -s dirspell
+# Correct spelling errors in arguments supplied to cd
+shopt -s cdspell
 
 if [ "$COLORTERM" == "gnome-terminal" ]; then
   export TERM=xterm-256color
@@ -39,13 +61,3 @@ set -o noclobber
 
 # Display matches for ambiguous patterns at first tab press
 # bind "set show-all-if-ambiguous on"
-
-## BETTER DIRECTORY NAVIGATION ##
-CDPATH=$CDPATH:~:~/work/projects
-
-# Prepend cd to directory names automatically
-shopt -s autocd
-# Correct spelling errors during tab-completion
-shopt -s dirspell
-# Correct spelling errors in arguments supplied to cd
-shopt -s cdspell
