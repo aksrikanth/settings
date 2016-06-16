@@ -65,11 +65,11 @@ if [ "$COLORTERM" == "gnome-terminal" ]; then
 fi
 
 # Avoid duplicate entries
-HISTCONTROL="erasedups:ignoreboth"
+export HISTCONTROL="erasedups:ignoreboth"
 
 # Huge history. Doesn't appear to slow things down, so why not?
-HISTSIZE=500000
-HISTFILESIZE=100000
+export HISTSIZE=500000
+export HISTFILESIZE=100000
 
 # Don't record some commands
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
