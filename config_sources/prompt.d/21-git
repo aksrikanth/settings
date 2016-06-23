@@ -12,6 +12,8 @@ function __git () {
   then
     return  # Treat it like not a git directory
   fi
+  __prompt_color
+  local prompt_color__=$result__
 
   local local_branch="$( git branch --no-color 2>/dev/null | grep '^\*' | sed 's/^[^ ]* //' )"
   if [ -z "$( echo $local_branch | grep -v 'no branch, rebasing' )" ]
@@ -30,7 +32,7 @@ function __git () {
       let local head_count="$( git rev-list @{u}..HEAD | wc -l | sed 's/ *//' )"
       let local remote_count="$( git rev-list HEAD..@{u} | wc -l | sed 's/ *//' )"
       unadorned_result__="$local_branch $head_count:$remote_count $remote_branch"
-      result__="$context_local__$local_branch $context_meta__$head_count:$remote_count $context_remote__$remote_branch$no_color__"
+      result__="$context_local__$local_branch $context_meta__$head_count$prompt_color__:$context_meta__$remote_count $context_remote__$remote_branch$no_color__"
     fi
   fi
 }

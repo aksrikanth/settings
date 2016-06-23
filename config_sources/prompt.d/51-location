@@ -24,7 +24,8 @@ function __location () {
     unadorned_location="${data_start_char__}$unadorned_hostname"
     location="$highlight__$data_start_char__$no_color__$hostname$no_color__"
   else
+    __prompt_color
     unadorned_location="${data_start_char__}$unadorned_hostname:$unadorned_directory"
-    location="$highlight__$data_start_char__$no_color__$hostname:$directory$no_color__"
+    location="$highlight__$data_start_char__$hostname$result__:$directory$no_color__"
   fi
 }
