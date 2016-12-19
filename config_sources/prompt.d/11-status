@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+function __save_code () {
+  code=$?
+}
+
 function __status () {
-  let local code=$?
   unadorned_result__=""
   result__=""
   if [ $code != 0 ]

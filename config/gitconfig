@@ -39,7 +39,7 @@
   f = fetch --prune origin
   file-history = log --follow -p # <filename>
   line-history = log -L # <line number>:<range>:filename
-  ls = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit
+  ls = log --pretty=format:'%Cred%H%Creset - %C(bold blue)%an%Creset - %Cgreen(%cr)%Creset - %s' --abbrev-commit
   m = merge @{u}
-  new = log --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr)' --abbrev-commit --author=Srikanth --no-merges @{u}..HEAD
+  new = log --pretty=format:'%Cred%H%Creset - %C(bold blue)%an%Creset - %Cgreen(%cr)%Creset - %s' --abbrev-commit --author=Srikanth --no-merges @{u}..HEAD
   r = rebase @{u}

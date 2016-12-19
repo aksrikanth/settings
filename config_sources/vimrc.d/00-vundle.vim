@@ -20,6 +20,7 @@ Plugin 'vim-scripts/zoomwin'
 
 " Filetype specific
 Plugin 'aksrikanth/conceal-cc.vim'
+Plugin 'aksrikanth/conceal-java.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'enomsg/vim-haskellConcealPlus'
