@@ -26,4 +26,5 @@ function __draw_chars () {
   fill_char__='─'
   data_start_char__='─┤'
   data_end_char__='├─'
+  sep='∶'
 }
