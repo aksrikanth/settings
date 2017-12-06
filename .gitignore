@@ -1,5 +1,6 @@
 **/.DS_Store
 bin/tig
+bin/vimr
 local_sources/*
 !local_sources/*.d
 local_sources/*.d/*
