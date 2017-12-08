@@ -50,7 +50,7 @@ path_prepend() {
   done
 }
 
-path_append "PATH" "$HOME/settings/bin" "$HOME/settings/local_sources/bin"
+path_append "PATH" "$HOME/settings/bin" "$HOME/settings/local/bin"
 path_append "CDPATH" "$HOME" "$HOME/work/projects"
 
 # Prepend cd to directory names automatically

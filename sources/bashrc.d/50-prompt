@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Inspired by http://www.gilesorr.com/bashprompt/prompts/twttypow.html
 
-for f in ~/settings/config_sources/prompt.d/*
+for f in ~/settings/sources/prompt.d/*
 do
   source $f
 done
 
-if [ -d ~/settings/local_sources/prompt.d -a -n "$( shopt -s nullglob; echo ~/settings/local_sources/prompt.d/* )" ]
+if [ -d ~/settings/local/prompt.d -a -n "$( shopt -s nullglob; echo ~/settings/local/prompt.d/* )" ]
 then
-  for f in ~/settings/local_sources/prompt.d/*
+  for f in ~/settings/local/prompt.d/*
   do
     source $f
   done

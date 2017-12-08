@@ -1,10 +1,10 @@
 **/.DS_Store
 bin/tig
 bin/vimr
-local_sources/*
-!local_sources/*.d
-local_sources/*.d/*
-!local_sources/*.d/.keep
+local/*
+!local/*.d
+local/*.d/*
+!local/*.d/.keep
 config/ssh/authorized_keys
 config/ssh/ssh_auth_sock
 config/ssh/id*
