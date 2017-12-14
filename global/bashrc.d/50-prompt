@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Inspired by http://www.gilesorr.com/bashprompt/prompts/twttypow.html
 
-for f in ~/settings/sources/prompt.d/*
+for f in ~/settings/global/prompt.d/*
 do
   source $f
 done

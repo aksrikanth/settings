@@ -1,4 +1,4 @@
-for f in ~/settings/sources/bashrc.d/*
+for f in ~/settings/global/bashrc.d/*
 do
   source $f
 done
