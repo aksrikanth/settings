@@ -27,6 +27,6 @@ function prompt () {
   __draw_chars
 
   PROMPT_COMMAND=prompt_command
-  PS1="\n\${metadata}\${fill}\${location}\n\[\$(iterm2_prompt_mark)\]"
+  PS1="\n\${metadata}\${fill}\${location}\n"
   PS2=""
 }

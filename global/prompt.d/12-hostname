@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 function __hostname () {
-  unadorned_result__=$( hostname -s )
+  unadorned_result__=$( hostname )
   result__="$location_coarse__$unadorned_result__$no_color__"
 }
