@@ -11,8 +11,10 @@
 # Software Foundation.
 #
 
-vimdiff="gvimdiff -f"
+vimdiff="vimdiff -f"
 suffix="vimgitdiff"
+#tempcmd="tempfile -p $suffix"
+tempcmd="mktemp --suffix $suffix"
 if [[ $1 == "-g" ]] ; then
   vimdiff="vimdiff"
   shift 1
@@ -42,12 +44,12 @@ fi
 args=$*
 shift $shift_args
 files="$1"
-patch=`tempfile -p $suffix`
-orig=`tempfile -p $suffix`
+patch=`$tempcmd`
+orig=`$tempcmd`
 tempfiles="$patch $orig"
 if [ -z $files ] || ! [ -f $files ] ; then
     # No file given, so loop over all files svn st says have changed
-    files=$(git status 2> /dev/null | grep -e "modified:" | cut -c 15-)
+    files=$(git status 2> /dev/null | grep -e "modified:" | cut -c 14-)
     for f in $files; do
       if ! [ -f $f ]; then break; fi
       filename=`basename $f`
