@@ -1,0 +1,11 @@
+Command to renew Let’s Encrypt certificate:
+
+    certbot certonly --manual -d 'domain.tld' -d '*.domain.tld' --preferred-challenges=dns --email=letsencrypt@srikanthak.name --agree-tos
+
+Go to digital ocean and add TXT records on the domain.tld domain.
+
+Command to verify TXT records:
+
+    host -t TXT _acme-challenge.domain.tld
+
+Restart nginx and verify in browser.

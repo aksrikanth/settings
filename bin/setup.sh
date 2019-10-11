@@ -2,7 +2,7 @@
 
 mkdir -p ~/tmp/undo
 mkdir -p ~/tmp/old
-for f in ~/settings/config/*
+for f in ~/settings/dotfiles/*
 do
   g=".${f##*/}"
   if [ -f "$g" ]

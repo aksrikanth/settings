@@ -5,10 +5,10 @@ local/*
 !local/*.d
 local/*.d/*
 !local/*.d/.keep
-config/ssh/authorized_keys
-config/ssh/ssh_auth_sock
-config/ssh/id*
-config/ssh/known_hosts
-config/vim/.netrwhist
-config/vim/bundle/*
-!config/vim/bundle/.keep
+dotfiles/ssh/*
+!dotfiles/ssh/rc
+dotfiles/vim/.netrwhist
+dotfiles/vim/bundle/*
+!dotfiles/vim/bundle/.keep
+dotfiles/config/fish/*
+!dotfiles/config/fish/functions
